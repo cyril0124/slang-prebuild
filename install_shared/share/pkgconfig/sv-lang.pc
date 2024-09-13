@@ -1,0 +1,10 @@
+prefix=/nfs/home/zhengchuyu/workspace/slang-prebuild/install_shared
+includedir="${prefix}/include"
+libdir="${prefix}/lib"
+
+Name: slang
+Description: SystemVerilog compiler and language services
+URL: https://sv-lang.com/
+Version: 6.0.0
+Cflags: -I"${includedir}"
+Libs: -L"${libdir}" -lsvlang
