@@ -53,16 +53,13 @@ enum class SLANG_EXPORT TokenKind : uint16_t {
     OpenBracket,
     CloseBracket,
     OpenParenthesis,
-    OpenParenthesisStar,
     CloseParenthesis,
-    StarCloseParenthesis,
     Semicolon,
     Colon,
     ColonEquals,
     ColonSlash,
     DoubleColon,
     Comma,
-    DotStar,
     Dot,
     Slash,
     Star,
@@ -397,7 +394,7 @@ SLANG_EXPORT std::string_view toString(TokenKind kind);
 
 class SLANG_EXPORT TokenKind_traits {
 public:
-    static const std::array<TokenKind, 355> values;
+    static const std::array<TokenKind, 352> values;
 };
 
 }

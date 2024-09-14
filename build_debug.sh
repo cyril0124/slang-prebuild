@@ -6,7 +6,7 @@ build_dir=$slang_dir/build
 install_dir=$prj_dir/install
 
 git submodule update --init --recursive
-cd $slang_dir; git checkout v6.0
+cd $slang_dir; git checkout 4dee9aabdb2fbf01646acb1dd09cbb1fa18e1e62
 cd $prj_dir
 
 # ==================================================

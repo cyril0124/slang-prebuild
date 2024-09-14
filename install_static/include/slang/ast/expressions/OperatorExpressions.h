@@ -32,9 +32,9 @@ public:
     Expression& operand() { return *operand_; }
 
     ConstantValue evalImpl(EvalContext& context) const;
-    bool propagateType(const ASTContext& context, const Type& newType);
+    bool propagateType(const ASTContext& context, const Type& newType, SourceRange opRange);
     std::optional<bitwidth_t> getEffectiveWidthImpl() const;
-    bool getEffectiveSignImpl() const;
+    EffectiveSign getEffectiveSignImpl(bool isForConversion) const;
 
     void serializeTo(ASTSerializer& serializer) const;
 
@@ -59,14 +59,21 @@ private:
 
 /// Represents a binary operator expression.
 class SLANG_EXPORT BinaryExpression : public Expression {
+private:
+    Expression* left_;
+    Expression* right_;
+
 public:
     /// The operator.
     BinaryOperator op;
 
+    /// The source range of the operator token.
+    SourceRange opRange;
+
     BinaryExpression(BinaryOperator op, const Type& type, Expression& left, Expression& right,
-                     SourceRange sourceRange) :
-        Expression(ExpressionKind::BinaryOp, type, sourceRange), op(op), left_(&left),
-        right_(&right) {}
+                     SourceRange sourceRange, SourceRange opRange) :
+        Expression(ExpressionKind::BinaryOp, type, sourceRange), left_(&left), right_(&right),
+        op(op), opRange(opRange) {}
 
     /// @returns the left-hand side of the expression
     const Expression& left() const { return *left_; }
@@ -81,9 +88,9 @@ public:
     Expression& right() { return *right_; }
 
     ConstantValue evalImpl(EvalContext& context) const;
-    bool propagateType(const ASTContext& context, const Type& newType);
+    bool propagateType(const ASTContext& context, const Type& newType, SourceRange opRange);
     std::optional<bitwidth_t> getEffectiveWidthImpl() const;
-    bool getEffectiveSignImpl() const;
+    EffectiveSign getEffectiveSignImpl(bool isForConversion) const;
 
     void serializeTo(ASTSerializer& serializer) const;
 
@@ -92,7 +99,7 @@ public:
                                   const ASTContext& context);
 
     static Expression& fromComponents(Expression& lhs, Expression& rhs, BinaryOperator op,
-                                      SourceLocation opLoc, SourceRange sourceRange,
+                                      SourceRange opRange, SourceRange sourceRange,
                                       const ASTContext& context);
 
     static bool isKind(ExpressionKind kind) { return kind == ExpressionKind::BinaryOp; }
@@ -104,8 +111,10 @@ public:
     }
 
 private:
-    Expression* left_;
-    Expression* right_;
+    static void analyzeOpTypes(const Type& clt, const Type& crt, const Type& originalLt,
+                               const Type& originalRt, const Expression& lhs, const Expression& rhs,
+                               const ASTContext& context, SourceRange opRange, DiagCode code,
+                               bool isComparison);
 };
 
 /// Represents a conditional operator expression.
@@ -123,10 +132,14 @@ public:
     /// The list of conditions controlling the expression.
     std::span<const Condition> conditions;
 
-    ConditionalExpression(const Type& type, std::span<const Condition> conditions, Expression& left,
-                          Expression& right, SourceRange sourceRange, bool isConst, bool isTrue) :
+    /// The location of the conditional '?' operator token.
+    SourceLocation opLoc;
+
+    ConditionalExpression(const Type& type, std::span<const Condition> conditions,
+                          SourceLocation opLoc, Expression& left, Expression& right,
+                          SourceRange sourceRange, bool isConst, bool isTrue) :
         Expression(ExpressionKind::ConditionalOp, type, sourceRange), conditions(conditions),
-        left_(&left), right_(&right), isConst(isConst), isTrue(isTrue) {}
+        opLoc(opLoc), left_(&left), right_(&right), isConst(isConst), isTrue(isTrue) {}
 
     /// @returns the left-hand side operand
     const Expression& left() const { return *left_; } // NOLINT
@@ -141,9 +154,9 @@ public:
     Expression& right() { return *right_; }
 
     ConstantValue evalImpl(EvalContext& context) const;
-    bool propagateType(const ASTContext& context, const Type& newType);
+    bool propagateType(const ASTContext& context, const Type& newType, SourceRange opRange);
     std::optional<bitwidth_t> getEffectiveWidthImpl() const;
-    bool getEffectiveSignImpl() const;
+    EffectiveSign getEffectiveSignImpl(bool isForConversion) const;
 
     /// If the condition for this expression is a known constant value,
     /// this method returns the side of the expression that will be selected
@@ -377,7 +390,7 @@ public:
     Expression& right() { return *right_; }
 
     ConstantValue evalImpl(EvalContext& context) const;
-    bool propagateType(const ASTContext& context, const Type& newType);
+    bool propagateType(const ASTContext& context, const Type& newType, SourceRange opRange);
 
     ConstantValue checkInside(EvalContext& context, const ConstantValue& val) const;
 

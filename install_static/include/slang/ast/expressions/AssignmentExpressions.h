@@ -67,7 +67,7 @@ public:
 
     static Expression& fromComponents(Compilation& compilation, std::optional<BinaryOperator> op,
                                       bitmask<AssignFlags> flags, Expression& lhs, Expression& rhs,
-                                      SourceLocation assignLoc, const TimingControl* timingControl,
+                                      SourceRange opRange, const TimingControl* timingControl,
                                       SourceRange sourceRange, const ASTContext& context);
 
     static bool isKind(ExpressionKind kind) { return kind == ExpressionKind::Assignment; }
@@ -109,7 +109,7 @@ public:
         operand_(&operand) {}
 
     /// @returns true if this is an implicit conversion
-    bool isImplicit() const { return conversionKind < ConversionKind::Explicit; }
+    bool isImplicit() const { return conversionKind < ConversionKind::StreamingConcat; }
 
     /// @returns the operand of the conversion
     const Expression& operand() const { return *operand_; }
@@ -119,7 +119,7 @@ public:
 
     ConstantValue evalImpl(EvalContext& context) const;
     std::optional<bitwidth_t> getEffectiveWidthImpl() const;
-    bool getEffectiveSignImpl() const;
+    EffectiveSign getEffectiveSignImpl(bool isForConversion) const;
 
     void serializeTo(ASTSerializer& serializer) const;
 
@@ -132,11 +132,12 @@ public:
 
     static Expression& makeImplicit(const ASTContext& context, const Type& targetType,
                                     ConversionKind conversionKind, Expression& expr,
-                                    const Expression* parentExpr, SourceLocation loc);
+                                    const Expression* parentExpr, SourceRange opRange);
 
     static ConstantValue convert(EvalContext& context, const Type& from, const Type& to,
                                  SourceRange sourceRange, ConstantValue&& value,
-                                 ConversionKind conversionKind, const Expression* expr = nullptr);
+                                 ConversionKind conversionKind, const Expression* expr = nullptr,
+                                 SourceRange implicitOpRange = {});
 
     static bool isKind(ExpressionKind kind) { return kind == ExpressionKind::Conversion; }
 
@@ -147,6 +148,7 @@ public:
 
 private:
     Expression* operand_;
+    SourceRange implicitOpRange;
 };
 
 /// Represents a new[] expression that creates a dynamic array.

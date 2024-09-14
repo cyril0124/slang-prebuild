@@ -125,9 +125,13 @@ enum class SLANG_EXPORT CompilationFlags {
     AllowSelfDeterminedStreamConcat = 1 << 12,
 
     /// Allow multi-driven subroutine local variables.
-    AllowMultiDrivenLocals = 1 << 13
+    AllowMultiDrivenLocals = 1 << 13,
+
+    /// Allow merging ANSI port declarations with nets and variables
+    /// declared in the module body.
+    AllowMergingAnsiPorts = 1 << 14
 };
-SLANG_BITMASK(CompilationFlags, AllowMultiDrivenLocals)
+SLANG_BITMASK(CompilationFlags, AllowMergingAnsiPorts)
 
 /// Contains various options that can control compilation behavior.
 struct SLANG_EXPORT CompilationOptions {
@@ -280,6 +284,9 @@ public:
     /// Returns true if the given flag(s) are enabled for this compilation.
     bool hasFlag(bitmask<CompilationFlags> flags) const { return options.flags.has(flags); }
 
+    /// Gets the language version set in the compilation options.
+    LanguageVersion languageVersion() const { return getOptions().languageVersion; }
+
     /// Gets the source manager associated with the compilation. If no syntax trees have
     /// been added to the design this method will return nullptr.
     const SourceManager* getSourceManager() const { return sourceManager; }
@@ -425,20 +432,10 @@ public:
     /// @{
 
     /// Registers a system subroutine handler, which can be accessed by compiled code.
-    void addSystemSubroutine(std::unique_ptr<SystemSubroutine> subroutine);
-
-    /// Registers an externally owned system subroutine handler,
-    /// which can be accessed by compiled code. The provided subroutine must remain
-    /// valid for the lifetime of this object.
-    void addSystemSubroutine(const SystemSubroutine& subroutine);
+    void addSystemSubroutine(const std::shared_ptr<SystemSubroutine>& subroutine);
 
     /// Registers a type-based system method handler, which can be accessed by compiled code.
-    void addSystemMethod(SymbolKind typeKind, std::unique_ptr<SystemSubroutine> method);
-
-    /// Registers an externally owned type-based system method handler,
-    /// which can be accessed by compiled code. The provided subroutine must remain
-    /// valid for the lifetime of this object.
-    void addSystemMethod(SymbolKind typeKind, const SystemSubroutine& subroutine);
+    void addSystemMethod(SymbolKind typeKind, const std::shared_ptr<SystemSubroutine>& method);
 
     /// Gets a system subroutine with the given name, or nullptr if there is no such subroutine
     /// registered.
@@ -736,6 +733,7 @@ private:
     Diagnostic& addDiag(Diagnostic diag);
 
     const RootSymbol& getRoot(bool skipDefParamsAndBinds);
+    void elaborate();
     void insertDefinition(Symbol& symbol, const Scope& scope);
     void parseParamOverrides(flat_hash_map<std::string_view, const ConstantValue*>& results);
     void checkDPIMethods(std::span<const SubroutineSymbol* const> dpiImports);
@@ -814,10 +812,11 @@ private:
     flat_hash_map<std::string_view, const PackageSymbol*> packageMap;
 
     // The name map for system subroutines.
-    flat_hash_map<std::string_view, const SystemSubroutine*> subroutineMap;
+    flat_hash_map<std::string_view, std::shared_ptr<SystemSubroutine>> subroutineMap;
 
     // The name map for system methods.
-    flat_hash_map<std::tuple<std::string_view, SymbolKind>, const SystemSubroutine*> methodMap;
+    flat_hash_map<std::tuple<std::string_view, SymbolKind>, std::shared_ptr<SystemSubroutine>>
+        methodMap;
 
     // Map from pointers (to symbols, statements, expressions) to their associated attributes.
     flat_hash_map<const void*, std::span<const AttributeSymbol* const>> attributeMap;
@@ -942,9 +941,6 @@ private:
     // The key is a combination of definition name + the scope in which it was declared.
     flat_hash_map<std::tuple<std::string_view, const Scope*>, const syntax::SyntaxNode*>
         externDefMap;
-
-    // Storage for system subroutine instances.
-    std::vector<std::unique_ptr<SystemSubroutine>> subroutineStorage;
 
     // The built-in std package.
     const PackageSymbol* stdPkg = nullptr;

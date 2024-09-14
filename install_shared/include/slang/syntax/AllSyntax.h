@@ -113,11 +113,13 @@ struct SLANG_EXPORT AttributeSpecSyntax : public SyntaxNode {
 
 struct SLANG_EXPORT AttributeInstanceSyntax : public SyntaxNode {
     Token openParen;
+    Token openStar;
     SeparatedSyntaxList<AttributeSpecSyntax> specs;
+    Token closeStar;
     Token closeParen;
 
-    AttributeInstanceSyntax(Token openParen, const SeparatedSyntaxList<AttributeSpecSyntax>& specs, Token closeParen) :
-        SyntaxNode(SyntaxKind::AttributeInstance), openParen(openParen), specs(specs), closeParen(closeParen) {
+    AttributeInstanceSyntax(Token openParen, Token openStar, const SeparatedSyntaxList<AttributeSpecSyntax>& specs, Token closeStar, Token closeParen) :
+        SyntaxNode(SyntaxKind::AttributeInstance), openParen(openParen), openStar(openStar), specs(specs), closeStar(closeStar), closeParen(closeParen) {
         this->specs.parent = this;
         for (auto child : this->specs)
             child->parent = this;
@@ -420,10 +422,11 @@ struct SLANG_EXPORT VariablePatternSyntax : public PatternSyntax {
 };
 
 struct SLANG_EXPORT WildcardPatternSyntax : public PatternSyntax {
-    Token dotStar;
+    Token dot;
+    Token star;
 
-    WildcardPatternSyntax(Token dotStar) :
-        PatternSyntax(SyntaxKind::WildcardPattern), dotStar(dotStar) {
+    WildcardPatternSyntax(Token dot, Token star) :
+        PatternSyntax(SyntaxKind::WildcardPattern), dot(dot), star(star) {
     }
 
     explicit WildcardPatternSyntax(const WildcardPatternSyntax&) = default;
@@ -4376,11 +4379,12 @@ struct SLANG_EXPORT AnsiPortListSyntax : public PortListSyntax {
 
 struct SLANG_EXPORT WildcardPortListSyntax : public PortListSyntax {
     Token openParen;
-    Token dotStar;
+    Token dot;
+    Token star;
     Token closeParen;
 
-    WildcardPortListSyntax(Token openParen, Token dotStar, Token closeParen) :
-        PortListSyntax(SyntaxKind::WildcardPortList), openParen(openParen), dotStar(dotStar), closeParen(closeParen) {
+    WildcardPortListSyntax(Token openParen, Token dot, Token star, Token closeParen) :
+        PortListSyntax(SyntaxKind::WildcardPortList), openParen(openParen), dot(dot), star(star), closeParen(closeParen) {
     }
 
     explicit WildcardPortListSyntax(const WildcardPortListSyntax&) = default;
@@ -4798,10 +4802,11 @@ struct SLANG_EXPORT NamedPortConnectionSyntax : public PortConnectionSyntax {
 };
 
 struct SLANG_EXPORT WildcardPortConnectionSyntax : public PortConnectionSyntax {
-    Token dotStar;
+    Token dot;
+    Token star;
 
-    WildcardPortConnectionSyntax(const SyntaxList<AttributeInstanceSyntax>& attributes, Token dotStar) :
-        PortConnectionSyntax(SyntaxKind::WildcardPortConnection, attributes), dotStar(dotStar) {
+    WildcardPortConnectionSyntax(const SyntaxList<AttributeInstanceSyntax>& attributes, Token dot, Token star) :
+        PortConnectionSyntax(SyntaxKind::WildcardPortConnection, attributes), dot(dot), star(star) {
     }
 
     explicit WildcardPortConnectionSyntax(const WildcardPortConnectionSyntax&) = default;
@@ -5953,12 +5958,13 @@ struct SLANG_EXPORT NonAnsiUdpPortListSyntax : public UdpPortListSyntax {
 
 struct SLANG_EXPORT WildcardUdpPortListSyntax : public UdpPortListSyntax {
     Token openParen;
-    Token dotStar;
+    Token dot;
+    Token star;
     Token closeParen;
     Token semi;
 
-    WildcardUdpPortListSyntax(Token openParen, Token dotStar, Token closeParen, Token semi) :
-        UdpPortListSyntax(SyntaxKind::WildcardUdpPortList), openParen(openParen), dotStar(dotStar), closeParen(closeParen), semi(semi) {
+    WildcardUdpPortListSyntax(Token openParen, Token dot, Token star, Token closeParen, Token semi) :
+        UdpPortListSyntax(SyntaxKind::WildcardUdpPortList), openParen(openParen), dot(dot), star(star), closeParen(closeParen), semi(semi) {
     }
 
     explicit WildcardUdpPortListSyntax(const WildcardUdpPortListSyntax&) = default;
@@ -6669,12 +6675,23 @@ struct SLANG_EXPORT DistWeightSyntax : public SyntaxNode {
 
 };
 
-struct SLANG_EXPORT DistItemSyntax : public SyntaxNode {
+struct SLANG_EXPORT DistItemBaseSyntax : public SyntaxNode {
+
+    DistItemBaseSyntax(SyntaxKind kind) :
+        SyntaxNode(kind) {
+    }
+
+    explicit DistItemBaseSyntax(const DistItemBaseSyntax&) = default;
+
+    static bool isKind(SyntaxKind kind);
+};
+
+struct SLANG_EXPORT DistItemSyntax : public DistItemBaseSyntax {
     not_null<ExpressionSyntax*> range;
     DistWeightSyntax* weight;
 
     DistItemSyntax(ExpressionSyntax& range, DistWeightSyntax* weight) :
-        SyntaxNode(SyntaxKind::DistItem), range(&range), weight(weight) {
+        DistItemBaseSyntax(SyntaxKind::DistItem), range(&range), weight(weight) {
         this->range->parent = this;
         if (this->weight) this->weight->parent = this;
     }
@@ -6690,13 +6707,33 @@ struct SLANG_EXPORT DistItemSyntax : public SyntaxNode {
 
 };
 
+struct SLANG_EXPORT DefaultDistItemSyntax : public DistItemBaseSyntax {
+    Token defaultKeyword;
+    DistWeightSyntax* weight;
+
+    DefaultDistItemSyntax(Token defaultKeyword, DistWeightSyntax* weight) :
+        DistItemBaseSyntax(SyntaxKind::DefaultDistItem), defaultKeyword(defaultKeyword), weight(weight) {
+        if (this->weight) this->weight->parent = this;
+    }
+
+    explicit DefaultDistItemSyntax(const DefaultDistItemSyntax&) = default;
+
+    static bool isKind(SyntaxKind kind);
+
+    TokenOrSyntax getChild(size_t index);
+    ConstTokenOrSyntax getChild(size_t index) const;
+    PtrTokenOrSyntax getChildPtr(size_t index);
+    void setChild(size_t index, TokenOrSyntax child);
+
+};
+
 struct SLANG_EXPORT DistConstraintListSyntax : public SyntaxNode {
     Token dist;
     Token openBrace;
-    SeparatedSyntaxList<DistItemSyntax> items;
+    SeparatedSyntaxList<DistItemBaseSyntax> items;
     Token closeBrace;
 
-    DistConstraintListSyntax(Token dist, Token openBrace, const SeparatedSyntaxList<DistItemSyntax>& items, Token closeBrace) :
+    DistConstraintListSyntax(Token dist, Token openBrace, const SeparatedSyntaxList<DistItemBaseSyntax>& items, Token closeBrace) :
         SyntaxNode(SyntaxKind::DistConstraintList), dist(dist), openBrace(openBrace), items(items), closeBrace(closeBrace) {
         this->items.parent = this;
         for (auto child : this->items)
@@ -6870,10 +6907,10 @@ struct SLANG_EXPORT LoopConstraintSyntax : public ConstraintItemSyntax {
 struct SLANG_EXPORT DisableConstraintSyntax : public ConstraintItemSyntax {
     Token disable;
     Token soft;
-    not_null<NameSyntax*> name;
+    not_null<ExpressionSyntax*> name;
     Token semi;
 
-    DisableConstraintSyntax(Token disable, Token soft, NameSyntax& name, Token semi) :
+    DisableConstraintSyntax(Token disable, Token soft, ExpressionSyntax& name, Token semi) :
         ConstraintItemSyntax(SyntaxKind::DisableConstraint), disable(disable), soft(soft), name(&name), semi(semi) {
         this->name->parent = this;
     }
@@ -6943,12 +6980,16 @@ struct SLANG_EXPORT ConstraintBlockSyntax : public ConstraintItemSyntax {
 struct SLANG_EXPORT ConstraintPrototypeSyntax : public MemberSyntax {
     TokenList qualifiers;
     Token keyword;
+    SyntaxList<ClassSpecifierSyntax> specifiers;
     not_null<NameSyntax*> name;
     Token semi;
 
-    ConstraintPrototypeSyntax(const SyntaxList<AttributeInstanceSyntax>& attributes, const TokenList& qualifiers, Token keyword, NameSyntax& name, Token semi) :
-        MemberSyntax(SyntaxKind::ConstraintPrototype, attributes), qualifiers(qualifiers), keyword(keyword), name(&name), semi(semi) {
+    ConstraintPrototypeSyntax(const SyntaxList<AttributeInstanceSyntax>& attributes, const TokenList& qualifiers, Token keyword, const SyntaxList<ClassSpecifierSyntax>& specifiers, NameSyntax& name, Token semi) :
+        MemberSyntax(SyntaxKind::ConstraintPrototype, attributes), qualifiers(qualifiers), keyword(keyword), specifiers(specifiers), name(&name), semi(semi) {
         this->qualifiers.parent = this;
+        this->specifiers.parent = this;
+        for (auto child : this->specifiers)
+            child->parent = this;
         this->name->parent = this;
     }
 
@@ -6966,12 +7007,16 @@ struct SLANG_EXPORT ConstraintPrototypeSyntax : public MemberSyntax {
 struct SLANG_EXPORT ConstraintDeclarationSyntax : public MemberSyntax {
     TokenList qualifiers;
     Token keyword;
+    SyntaxList<ClassSpecifierSyntax> specifiers;
     not_null<NameSyntax*> name;
     not_null<ConstraintBlockSyntax*> block;
 
-    ConstraintDeclarationSyntax(const SyntaxList<AttributeInstanceSyntax>& attributes, const TokenList& qualifiers, Token keyword, NameSyntax& name, ConstraintBlockSyntax& block) :
-        MemberSyntax(SyntaxKind::ConstraintDeclaration, attributes), qualifiers(qualifiers), keyword(keyword), name(&name), block(&block) {
+    ConstraintDeclarationSyntax(const SyntaxList<AttributeInstanceSyntax>& attributes, const TokenList& qualifiers, Token keyword, const SyntaxList<ClassSpecifierSyntax>& specifiers, NameSyntax& name, ConstraintBlockSyntax& block) :
+        MemberSyntax(SyntaxKind::ConstraintDeclaration, attributes), qualifiers(qualifiers), keyword(keyword), specifiers(specifiers), name(&name), block(&block) {
         this->qualifiers.parent = this;
+        this->specifiers.parent = this;
+        for (auto child : this->specifiers)
+            child->parent = this;
         this->name->parent = this;
         this->block->parent = this;
     }
@@ -7133,6 +7178,7 @@ struct SLANG_EXPORT BlockCoverageEventSyntax : public SyntaxNode {
 
 struct SLANG_EXPORT CovergroupDeclarationSyntax : public MemberSyntax {
     Token covergroup;
+    Token extends;
     Token name;
     FunctionPortListSyntax* portList;
     SyntaxNode* event;
@@ -7141,8 +7187,8 @@ struct SLANG_EXPORT CovergroupDeclarationSyntax : public MemberSyntax {
     Token endgroup;
     NamedBlockClauseSyntax* endBlockName;
 
-    CovergroupDeclarationSyntax(const SyntaxList<AttributeInstanceSyntax>& attributes, Token covergroup, Token name, FunctionPortListSyntax* portList, SyntaxNode* event, Token semi, const SyntaxList<MemberSyntax>& members, Token endgroup, NamedBlockClauseSyntax* endBlockName) :
-        MemberSyntax(SyntaxKind::CovergroupDeclaration, attributes), covergroup(covergroup), name(name), portList(portList), event(event), semi(semi), members(members), endgroup(endgroup), endBlockName(endBlockName) {
+    CovergroupDeclarationSyntax(const SyntaxList<AttributeInstanceSyntax>& attributes, Token covergroup, Token extends, Token name, FunctionPortListSyntax* portList, SyntaxNode* event, Token semi, const SyntaxList<MemberSyntax>& members, Token endgroup, NamedBlockClauseSyntax* endBlockName) :
+        MemberSyntax(SyntaxKind::CovergroupDeclaration, attributes), covergroup(covergroup), extends(extends), name(name), portList(portList), event(event), semi(semi), members(members), endgroup(endgroup), endBlockName(endBlockName) {
         if (this->portList) this->portList->parent = this;
         if (this->event) this->event->parent = this;
         this->members.parent = this;
@@ -8792,6 +8838,42 @@ struct SLANG_EXPORT UnconnectedDriveDirectiveSyntax : public DirectiveSyntax {
 
 };
 
+struct SLANG_EXPORT DefaultDecayTimeDirectiveSyntax : public DirectiveSyntax {
+    Token time;
+
+    DefaultDecayTimeDirectiveSyntax(Token directive, Token time) :
+        DirectiveSyntax(SyntaxKind::DefaultDecayTimeDirective, directive), time(time) {
+    }
+
+    explicit DefaultDecayTimeDirectiveSyntax(const DefaultDecayTimeDirectiveSyntax&) = default;
+
+    static bool isKind(SyntaxKind kind);
+
+    TokenOrSyntax getChild(size_t index);
+    ConstTokenOrSyntax getChild(size_t index) const;
+    PtrTokenOrSyntax getChildPtr(size_t index);
+    void setChild(size_t index, TokenOrSyntax child);
+
+};
+
+struct SLANG_EXPORT DefaultTriregStrengthDirectiveSyntax : public DirectiveSyntax {
+    Token strength;
+
+    DefaultTriregStrengthDirectiveSyntax(Token directive, Token strength) :
+        DirectiveSyntax(SyntaxKind::DefaultTriregStrengthDirective, directive), strength(strength) {
+    }
+
+    explicit DefaultTriregStrengthDirectiveSyntax(const DefaultTriregStrengthDirectiveSyntax&) = default;
+
+    static bool isKind(SyntaxKind kind);
+
+    TokenOrSyntax getChild(size_t index);
+    ConstTokenOrSyntax getChild(size_t index) const;
+    PtrTokenOrSyntax getChildPtr(size_t index);
+    void setChild(size_t index, TokenOrSyntax child);
+
+};
+
 struct SLANG_EXPORT LineDirectiveSyntax : public DirectiveSyntax {
     Token lineNumber;
     Token fileName;
@@ -9280,7 +9362,7 @@ public:
     AssertionItemPortSyntax& assertionItemPort(const SyntaxList<AttributeInstanceSyntax>& attributes, Token local, Token direction, DataTypeSyntax& type, Token name, const SyntaxList<VariableDimensionSyntax>& dimensions, EqualsAssertionArgClauseSyntax* defaultValue);
     AssignmentPatternExpressionSyntax& assignmentPatternExpression(DataTypeSyntax* type, AssignmentPatternSyntax& pattern);
     AssignmentPatternItemSyntax& assignmentPatternItem(ExpressionSyntax& key, Token colon, ExpressionSyntax& expr);
-    AttributeInstanceSyntax& attributeInstance(Token openParen, const SeparatedSyntaxList<AttributeSpecSyntax>& specs, Token closeParen);
+    AttributeInstanceSyntax& attributeInstance(Token openParen, Token openStar, const SeparatedSyntaxList<AttributeSpecSyntax>& specs, Token closeStar, Token closeParen);
     AttributeSpecSyntax& attributeSpec(Token name, EqualsValueClauseSyntax* value);
     BadExpressionSyntax& badExpression(ExpressionSyntax& expr);
     BeginKeywordsDirectiveSyntax& beginKeywordsDirective(Token directive, Token versionSpecifier);
@@ -9340,8 +9422,8 @@ public:
     ConfigLiblistSyntax& configLiblist(Token liblist, const TokenList& libraries);
     ConfigUseClauseSyntax& configUseClause(Token use, ConfigCellIdentifierSyntax* name, ParameterValueAssignmentSyntax* paramAssignments, Token colon, Token config);
     ConstraintBlockSyntax& constraintBlock(Token openBrace, const SyntaxList<ConstraintItemSyntax>& items, Token closeBrace);
-    ConstraintDeclarationSyntax& constraintDeclaration(const SyntaxList<AttributeInstanceSyntax>& attributes, const TokenList& qualifiers, Token keyword, NameSyntax& name, ConstraintBlockSyntax& block);
-    ConstraintPrototypeSyntax& constraintPrototype(const SyntaxList<AttributeInstanceSyntax>& attributes, const TokenList& qualifiers, Token keyword, NameSyntax& name, Token semi);
+    ConstraintDeclarationSyntax& constraintDeclaration(const SyntaxList<AttributeInstanceSyntax>& attributes, const TokenList& qualifiers, Token keyword, const SyntaxList<ClassSpecifierSyntax>& specifiers, NameSyntax& name, ConstraintBlockSyntax& block);
+    ConstraintPrototypeSyntax& constraintPrototype(const SyntaxList<AttributeInstanceSyntax>& attributes, const TokenList& qualifiers, Token keyword, const SyntaxList<ClassSpecifierSyntax>& specifiers, NameSyntax& name, Token semi);
     ContinuousAssignSyntax& continuousAssign(const SyntaxList<AttributeInstanceSyntax>& attributes, Token assign, DriveStrengthSyntax* strength, TimingControlSyntax* delay, const SeparatedSyntaxList<ExpressionSyntax>& assignments, Token semi);
     CopyClassExpressionSyntax& copyClassExpression(NameSyntax& scopedNew, ExpressionSyntax& expr);
     CoverCrossSyntax& coverCross(const SyntaxList<AttributeInstanceSyntax>& attributes, NamedLabelSyntax* label, Token cross, const SeparatedSyntaxList<IdentifierNameSyntax>& items, CoverageIffClauseSyntax* iff, Token openBrace, const SyntaxList<MemberSyntax>& members, Token closeBrace, Token emptySemi);
@@ -9349,7 +9431,7 @@ public:
     CoverageBinsSyntax& coverageBins(const SyntaxList<AttributeInstanceSyntax>& attributes, Token wildcard, Token keyword, Token name, CoverageBinsArraySizeSyntax* size, Token equals, CoverageBinInitializerSyntax& initializer, CoverageIffClauseSyntax* iff, Token semi);
     CoverageIffClauseSyntax& coverageIffClause(Token iff, Token openParen, ExpressionSyntax& expr, Token closeParen);
     CoverageOptionSyntax& coverageOption(const SyntaxList<AttributeInstanceSyntax>& attributes, ExpressionSyntax& expr, Token semi);
-    CovergroupDeclarationSyntax& covergroupDeclaration(const SyntaxList<AttributeInstanceSyntax>& attributes, Token covergroup, Token name, FunctionPortListSyntax* portList, SyntaxNode* event, Token semi, const SyntaxList<MemberSyntax>& members, Token endgroup, NamedBlockClauseSyntax* endBlockName);
+    CovergroupDeclarationSyntax& covergroupDeclaration(const SyntaxList<AttributeInstanceSyntax>& attributes, Token covergroup, Token extends, Token name, FunctionPortListSyntax* portList, SyntaxNode* event, Token semi, const SyntaxList<MemberSyntax>& members, Token endgroup, NamedBlockClauseSyntax* endBlockName);
     CoverpointSyntax& coverpoint(const SyntaxList<AttributeInstanceSyntax>& attributes, DataTypeSyntax& type, NamedLabelSyntax* label, Token coverpoint, ExpressionSyntax& expr, CoverageIffClauseSyntax* iff, Token openBrace, const SyntaxList<MemberSyntax>& members, Token closeBrace, Token emptySemi);
     DPIExportSyntax& dPIExport(const SyntaxList<AttributeInstanceSyntax>& attributes, Token keyword, Token specString, Token c_identifier, Token equals, Token functionOrTask, Token name, Token semi);
     DPIImportSyntax& dPIImport(const SyntaxList<AttributeInstanceSyntax>& attributes, Token keyword, Token specString, Token property, Token c_identifier, Token equals, FunctionPrototypeSyntax& method, Token semi);
@@ -9361,24 +9443,27 @@ public:
     DefaultClockingReferenceSyntax& defaultClockingReference(const SyntaxList<AttributeInstanceSyntax>& attributes, Token defaultKeyword, Token clocking, Token name, Token semi);
     DefaultConfigRuleSyntax& defaultConfigRule(Token defaultKeyword, ConfigLiblistSyntax& liblist, Token semi);
     DefaultCoverageBinInitializerSyntax& defaultCoverageBinInitializer(Token defaultKeyword, Token sequenceKeyword);
+    DefaultDecayTimeDirectiveSyntax& defaultDecayTimeDirective(Token directive, Token time);
     DefaultDisableDeclarationSyntax& defaultDisableDeclaration(const SyntaxList<AttributeInstanceSyntax>& attributes, Token defaultKeyword, Token disableKeyword, Token iffKeyword, ExpressionSyntax& expr, Token semi);
+    DefaultDistItemSyntax& defaultDistItem(Token defaultKeyword, DistWeightSyntax* weight);
     DefaultExtendsClauseArgSyntax& defaultExtendsClauseArg(Token openParen, Token defaultKeyword, Token closeParen);
     DefaultFunctionPortSyntax& defaultFunctionPort(Token keyword);
     DefaultNetTypeDirectiveSyntax& defaultNetTypeDirective(Token directive, Token netType);
     DefaultPropertyCaseItemSyntax& defaultPropertyCaseItem(Token defaultKeyword, Token colon, PropertyExprSyntax& expr, Token semi);
     DefaultRsCaseItemSyntax& defaultRsCaseItem(Token defaultKeyword, Token colon, RsProdItemSyntax& item, Token semi);
     DefaultSkewItemSyntax& defaultSkewItem(const SyntaxList<AttributeInstanceSyntax>& attributes, Token keyword, ClockingDirectionSyntax& direction, Token semi);
+    DefaultTriregStrengthDirectiveSyntax& defaultTriregStrengthDirective(Token directive, Token strength);
     DeferredAssertionSyntax& deferredAssertion(Token hash, Token zero, Token finalKeyword);
     DefineDirectiveSyntax& defineDirective(Token directive, Token name, MacroFormalArgumentListSyntax* formalArguments, const TokenList& body);
     Delay3Syntax& delay3(Token hash, Token openParen, ExpressionSyntax& delay1, Token comma1, ExpressionSyntax* delay2, Token comma2, ExpressionSyntax* delay3, Token closeParen);
     DelaySyntax& delay(SyntaxKind kind, Token hash, ExpressionSyntax& delayValue);
     DelayedSequenceElementSyntax& delayedSequenceElement(Token doubleHash, ExpressionSyntax* delayVal, Token openBracket, Token op, SelectorSyntax* range, Token closeBracket, SequenceExprSyntax& expr);
     DelayedSequenceExprSyntax& delayedSequenceExpr(SequenceExprSyntax* first, const SyntaxList<DelayedSequenceElementSyntax>& elements);
-    DisableConstraintSyntax& disableConstraint(Token disable, Token soft, NameSyntax& name, Token semi);
+    DisableConstraintSyntax& disableConstraint(Token disable, Token soft, ExpressionSyntax& name, Token semi);
     DisableForkStatementSyntax& disableForkStatement(NamedLabelSyntax* label, const SyntaxList<AttributeInstanceSyntax>& attributes, Token disable, Token fork, Token semi);
     DisableIffSyntax& disableIff(Token disable, Token iff, Token openParen, ExpressionSyntax& expr, Token closeParen);
     DisableStatementSyntax& disableStatement(NamedLabelSyntax* label, const SyntaxList<AttributeInstanceSyntax>& attributes, Token disable, NameSyntax& name, Token semi);
-    DistConstraintListSyntax& distConstraintList(Token dist, Token openBrace, const SeparatedSyntaxList<DistItemSyntax>& items, Token closeBrace);
+    DistConstraintListSyntax& distConstraintList(Token dist, Token openBrace, const SeparatedSyntaxList<DistItemBaseSyntax>& items, Token closeBrace);
     DistItemSyntax& distItem(ExpressionSyntax& range, DistWeightSyntax* weight);
     DistWeightSyntax& distWeight(Token op, Token extraOp, ExpressionSyntax& expr);
     DividerClauseSyntax& dividerClause(Token divide, Token value);
@@ -9649,10 +9734,10 @@ public:
     WaitOrderStatementSyntax& waitOrderStatement(NamedLabelSyntax* label, const SyntaxList<AttributeInstanceSyntax>& attributes, Token wait_order, Token openParen, const SeparatedSyntaxList<NameSyntax>& names, Token closeParen, ActionBlockSyntax& action);
     WaitStatementSyntax& waitStatement(NamedLabelSyntax* label, const SyntaxList<AttributeInstanceSyntax>& attributes, Token wait, Token openParen, ExpressionSyntax& expr, Token closeParen, StatementSyntax& statement);
     WildcardDimensionSpecifierSyntax& wildcardDimensionSpecifier(Token star);
-    WildcardPatternSyntax& wildcardPattern(Token dotStar);
-    WildcardPortConnectionSyntax& wildcardPortConnection(const SyntaxList<AttributeInstanceSyntax>& attributes, Token dotStar);
-    WildcardPortListSyntax& wildcardPortList(Token openParen, Token dotStar, Token closeParen);
-    WildcardUdpPortListSyntax& wildcardUdpPortList(Token openParen, Token dotStar, Token closeParen, Token semi);
+    WildcardPatternSyntax& wildcardPattern(Token dot, Token star);
+    WildcardPortConnectionSyntax& wildcardPortConnection(const SyntaxList<AttributeInstanceSyntax>& attributes, Token dot, Token star);
+    WildcardPortListSyntax& wildcardPortList(Token openParen, Token dot, Token star, Token closeParen);
+    WildcardUdpPortListSyntax& wildcardUdpPortList(Token openParen, Token dot, Token star, Token closeParen, Token semi);
     WithClauseSyntax& withClause(Token with, Token openParen, ExpressionSyntax& expr, Token closeParen);
     WithFunctionClauseSyntax& withFunctionClause(Token with, NameSyntax& name);
     WithFunctionSampleSyntax& withFunctionSample(Token with, Token function, Token sample, FunctionPortListSyntax* portList);
@@ -9801,7 +9886,9 @@ decltype(auto) visitSyntaxNode(TNode* node, TVisitor& visitor, Args&&... args) {
         case SyntaxKind::DefaultClockingReference: return visitor.visit(*static_cast<std::conditional_t<isConst, const DefaultClockingReferenceSyntax*, DefaultClockingReferenceSyntax*>>(node), std::forward<Args>(args)...);
         case SyntaxKind::DefaultConfigRule: return visitor.visit(*static_cast<std::conditional_t<isConst, const DefaultConfigRuleSyntax*, DefaultConfigRuleSyntax*>>(node), std::forward<Args>(args)...);
         case SyntaxKind::DefaultCoverageBinInitializer: return visitor.visit(*static_cast<std::conditional_t<isConst, const DefaultCoverageBinInitializerSyntax*, DefaultCoverageBinInitializerSyntax*>>(node), std::forward<Args>(args)...);
+        case SyntaxKind::DefaultDecayTimeDirective: return visitor.visit(*static_cast<std::conditional_t<isConst, const DefaultDecayTimeDirectiveSyntax*, DefaultDecayTimeDirectiveSyntax*>>(node), std::forward<Args>(args)...);
         case SyntaxKind::DefaultDisableDeclaration: return visitor.visit(*static_cast<std::conditional_t<isConst, const DefaultDisableDeclarationSyntax*, DefaultDisableDeclarationSyntax*>>(node), std::forward<Args>(args)...);
+        case SyntaxKind::DefaultDistItem: return visitor.visit(*static_cast<std::conditional_t<isConst, const DefaultDistItemSyntax*, DefaultDistItemSyntax*>>(node), std::forward<Args>(args)...);
         case SyntaxKind::DefaultExtendsClauseArg: return visitor.visit(*static_cast<std::conditional_t<isConst, const DefaultExtendsClauseArgSyntax*, DefaultExtendsClauseArgSyntax*>>(node), std::forward<Args>(args)...);
         case SyntaxKind::DefaultFunctionPort: return visitor.visit(*static_cast<std::conditional_t<isConst, const DefaultFunctionPortSyntax*, DefaultFunctionPortSyntax*>>(node), std::forward<Args>(args)...);
         case SyntaxKind::DefaultNetTypeDirective: return visitor.visit(*static_cast<std::conditional_t<isConst, const DefaultNetTypeDirectiveSyntax*, DefaultNetTypeDirectiveSyntax*>>(node), std::forward<Args>(args)...);
@@ -9809,10 +9896,15 @@ decltype(auto) visitSyntaxNode(TNode* node, TVisitor& visitor, Args&&... args) {
         case SyntaxKind::DefaultPropertyCaseItem: return visitor.visit(*static_cast<std::conditional_t<isConst, const DefaultPropertyCaseItemSyntax*, DefaultPropertyCaseItemSyntax*>>(node), std::forward<Args>(args)...);
         case SyntaxKind::DefaultRsCaseItem: return visitor.visit(*static_cast<std::conditional_t<isConst, const DefaultRsCaseItemSyntax*, DefaultRsCaseItemSyntax*>>(node), std::forward<Args>(args)...);
         case SyntaxKind::DefaultSkewItem: return visitor.visit(*static_cast<std::conditional_t<isConst, const DefaultSkewItemSyntax*, DefaultSkewItemSyntax*>>(node), std::forward<Args>(args)...);
+        case SyntaxKind::DefaultTriregStrengthDirective: return visitor.visit(*static_cast<std::conditional_t<isConst, const DefaultTriregStrengthDirectiveSyntax*, DefaultTriregStrengthDirectiveSyntax*>>(node), std::forward<Args>(args)...);
         case SyntaxKind::DeferredAssertion: return visitor.visit(*static_cast<std::conditional_t<isConst, const DeferredAssertionSyntax*, DeferredAssertionSyntax*>>(node), std::forward<Args>(args)...);
         case SyntaxKind::DefineDirective: return visitor.visit(*static_cast<std::conditional_t<isConst, const DefineDirectiveSyntax*, DefineDirectiveSyntax*>>(node), std::forward<Args>(args)...);
         case SyntaxKind::Delay3: return visitor.visit(*static_cast<std::conditional_t<isConst, const Delay3Syntax*, Delay3Syntax*>>(node), std::forward<Args>(args)...);
         case SyntaxKind::DelayControl: return visitor.visit(*static_cast<std::conditional_t<isConst, const DelaySyntax*, DelaySyntax*>>(node), std::forward<Args>(args)...);
+        case SyntaxKind::DelayModeDistributedDirective: return visitor.visit(*static_cast<std::conditional_t<isConst, const SimpleDirectiveSyntax*, SimpleDirectiveSyntax*>>(node), std::forward<Args>(args)...);
+        case SyntaxKind::DelayModePathDirective: return visitor.visit(*static_cast<std::conditional_t<isConst, const SimpleDirectiveSyntax*, SimpleDirectiveSyntax*>>(node), std::forward<Args>(args)...);
+        case SyntaxKind::DelayModeUnitDirective: return visitor.visit(*static_cast<std::conditional_t<isConst, const SimpleDirectiveSyntax*, SimpleDirectiveSyntax*>>(node), std::forward<Args>(args)...);
+        case SyntaxKind::DelayModeZeroDirective: return visitor.visit(*static_cast<std::conditional_t<isConst, const SimpleDirectiveSyntax*, SimpleDirectiveSyntax*>>(node), std::forward<Args>(args)...);
         case SyntaxKind::DelayedSequenceElement: return visitor.visit(*static_cast<std::conditional_t<isConst, const DelayedSequenceElementSyntax*, DelayedSequenceElementSyntax*>>(node), std::forward<Args>(args)...);
         case SyntaxKind::DelayedSequenceExpr: return visitor.visit(*static_cast<std::conditional_t<isConst, const DelayedSequenceExprSyntax*, DelayedSequenceExprSyntax*>>(node), std::forward<Args>(args)...);
         case SyntaxKind::DescendingRangeSelect: return visitor.visit(*static_cast<std::conditional_t<isConst, const RangeSelectSyntax*, RangeSelectSyntax*>>(node), std::forward<Args>(args)...);
@@ -9851,6 +9943,8 @@ decltype(auto) visitSyntaxNode(TNode* node, TVisitor& visitor, Args&&... args) {
         case SyntaxKind::EndCellDefineDirective: return visitor.visit(*static_cast<std::conditional_t<isConst, const SimpleDirectiveSyntax*, SimpleDirectiveSyntax*>>(node), std::forward<Args>(args)...);
         case SyntaxKind::EndIfDirective: return visitor.visit(*static_cast<std::conditional_t<isConst, const UnconditionalBranchDirectiveSyntax*, UnconditionalBranchDirectiveSyntax*>>(node), std::forward<Args>(args)...);
         case SyntaxKind::EndKeywordsDirective: return visitor.visit(*static_cast<std::conditional_t<isConst, const SimpleDirectiveSyntax*, SimpleDirectiveSyntax*>>(node), std::forward<Args>(args)...);
+        case SyntaxKind::EndProtectDirective: return visitor.visit(*static_cast<std::conditional_t<isConst, const SimpleDirectiveSyntax*, SimpleDirectiveSyntax*>>(node), std::forward<Args>(args)...);
+        case SyntaxKind::EndProtectedDirective: return visitor.visit(*static_cast<std::conditional_t<isConst, const SimpleDirectiveSyntax*, SimpleDirectiveSyntax*>>(node), std::forward<Args>(args)...);
         case SyntaxKind::EnumType: return visitor.visit(*static_cast<std::conditional_t<isConst, const EnumTypeSyntax*, EnumTypeSyntax*>>(node), std::forward<Args>(args)...);
         case SyntaxKind::EqualityExpression: return visitor.visit(*static_cast<std::conditional_t<isConst, const BinaryExpressionSyntax*, BinaryExpressionSyntax*>>(node), std::forward<Args>(args)...);
         case SyntaxKind::EqualsAssertionArgClause: return visitor.visit(*static_cast<std::conditional_t<isConst, const EqualsAssertionArgClauseSyntax*, EqualsAssertionArgClauseSyntax*>>(node), std::forward<Args>(args)...);
@@ -10051,6 +10145,8 @@ decltype(auto) visitSyntaxNode(TNode* node, TVisitor& visitor, Args&&... args) {
         case SyntaxKind::PropertyDeclaration: return visitor.visit(*static_cast<std::conditional_t<isConst, const PropertyDeclarationSyntax*, PropertyDeclarationSyntax*>>(node), std::forward<Args>(args)...);
         case SyntaxKind::PropertySpec: return visitor.visit(*static_cast<std::conditional_t<isConst, const PropertySpecSyntax*, PropertySpecSyntax*>>(node), std::forward<Args>(args)...);
         case SyntaxKind::PropertyType: return visitor.visit(*static_cast<std::conditional_t<isConst, const KeywordTypeSyntax*, KeywordTypeSyntax*>>(node), std::forward<Args>(args)...);
+        case SyntaxKind::ProtectDirective: return visitor.visit(*static_cast<std::conditional_t<isConst, const SimpleDirectiveSyntax*, SimpleDirectiveSyntax*>>(node), std::forward<Args>(args)...);
+        case SyntaxKind::ProtectedDirective: return visitor.visit(*static_cast<std::conditional_t<isConst, const SimpleDirectiveSyntax*, SimpleDirectiveSyntax*>>(node), std::forward<Args>(args)...);
         case SyntaxKind::PullStrength: return visitor.visit(*static_cast<std::conditional_t<isConst, const PullStrengthSyntax*, PullStrengthSyntax*>>(node), std::forward<Args>(args)...);
         case SyntaxKind::PulseStyleDeclaration: return visitor.visit(*static_cast<std::conditional_t<isConst, const PulseStyleDeclarationSyntax*, PulseStyleDeclarationSyntax*>>(node), std::forward<Args>(args)...);
         case SyntaxKind::QueueDimensionSpecifier: return visitor.visit(*static_cast<std::conditional_t<isConst, const QueueDimensionSpecifierSyntax*, QueueDimensionSpecifierSyntax*>>(node), std::forward<Args>(args)...);

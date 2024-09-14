@@ -138,7 +138,9 @@ enum class SLANG_EXPORT SyntaxKind {
     DefaultClockingReference,
     DefaultConfigRule,
     DefaultCoverageBinInitializer,
+    DefaultDecayTimeDirective,
     DefaultDisableDeclaration,
+    DefaultDistItem,
     DefaultExtendsClauseArg,
     DefaultFunctionPort,
     DefaultNetTypeDirective,
@@ -146,10 +148,15 @@ enum class SLANG_EXPORT SyntaxKind {
     DefaultPropertyCaseItem,
     DefaultRsCaseItem,
     DefaultSkewItem,
+    DefaultTriregStrengthDirective,
     DeferredAssertion,
     DefineDirective,
     Delay3,
     DelayControl,
+    DelayModeDistributedDirective,
+    DelayModePathDirective,
+    DelayModeUnitDirective,
+    DelayModeZeroDirective,
     DelayedSequenceElement,
     DelayedSequenceExpr,
     DescendingRangeSelect,
@@ -188,6 +195,8 @@ enum class SLANG_EXPORT SyntaxKind {
     EndCellDefineDirective,
     EndIfDirective,
     EndKeywordsDirective,
+    EndProtectDirective,
+    EndProtectedDirective,
     EnumType,
     EqualityExpression,
     EqualsAssertionArgClause,
@@ -388,6 +397,8 @@ enum class SLANG_EXPORT SyntaxKind {
     PropertyDeclaration,
     PropertySpec,
     PropertyType,
+    ProtectDirective,
+    ProtectedDirective,
     PullStrength,
     PulseStyleDeclaration,
     QueueDimensionSpecifier,
@@ -544,7 +555,7 @@ SLANG_EXPORT std::string_view toString(SyntaxKind kind);
 
 class SLANG_EXPORT SyntaxKind_traits {
 public:
-    static const std::array<SyntaxKind, 525> values;
+    static const std::array<SyntaxKind, 536> values;
 };
 
 SLANG_EXPORT const std::type_info* typeFromSyntaxKind(SyntaxKind kind);

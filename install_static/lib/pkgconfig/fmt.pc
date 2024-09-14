@@ -1,11 +1,11 @@
-prefix=/nfs/home/zhengchuyu/workspace/slang-prebuild/install_static
-exec_prefix=/nfs/home/zhengchuyu/workspace/slang-prebuild/install_static
+prefix=/nfs/home/zhengchuyu/workspace/project/slang-prebuild/install_static
+exec_prefix=/nfs/home/zhengchuyu/workspace/project/slang-prebuild/install_static
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include
 
 Name: fmt
 Description: A modern formatting library
-Version: 10.2.1
+Version: 11.0.1
 Libs: -L${libdir} -lfmt
 Cflags: -I${includedir}
 

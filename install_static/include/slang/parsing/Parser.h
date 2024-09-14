@@ -297,6 +297,7 @@ private:
     syntax::FunctionPortListSyntax* parseFunctionPortList(bitmask<FunctionOptions> options);
     syntax::FunctionPrototypeSyntax& parseFunctionPrototype(syntax::SyntaxKind parentKind, bitmask<FunctionOptions> options, bool* isConstructor = nullptr);
     syntax::FunctionDeclarationSyntax& parseFunctionDeclaration(AttrList attributes, syntax::SyntaxKind functionKind, TokenKind endKind, syntax::SyntaxKind parentKind, bitmask<FunctionOptions> options = {});
+    std::span<syntax::ClassSpecifierSyntax*> parseClassSpecifierList(bool allowSpecifiers);
     Token parseLifetime();
     std::span<syntax::SyntaxNode*> parseBlockItems(TokenKind endKind, Token& end, bool inConstructor);
     syntax::GenvarDeclarationSyntax& parseGenvarDeclaration(AttrList attributes);
@@ -307,13 +308,13 @@ private:
     syntax::ImplementsClauseSyntax* parseImplementsClause(TokenKind keywordKind, Token& semi);
     syntax::ClassSpecifierSyntax* parseClassSpecifier();
     syntax::ClassDeclarationSyntax& parseClassDeclaration(AttrList attributes, Token virtualOrInterface);
-    syntax::MemberSyntax* parseClassMember(bool isIfaceClass);
+    syntax::MemberSyntax* parseClassMember(bool isIfaceClass, bool hasBaseClass);
     syntax::ContinuousAssignSyntax& parseContinuousAssign(AttrList attributes);
     syntax::DeclaratorSyntax& parseDeclarator(bool allowMinTypMax = false, bool requireInitializers = false);
     syntax::MemberSyntax* parseCoverageMember();
     syntax::BlockEventExpressionSyntax& parseBlockEventExpression();
     syntax::WithClauseSyntax* parseWithClause();
-    syntax::CovergroupDeclarationSyntax& parseCovergroupDeclaration(AttrList attributes);
+    syntax::CovergroupDeclarationSyntax& parseCovergroupDeclaration(AttrList attributes, bool inClass, bool hasBaseClass);
     syntax::CoverpointSyntax* parseCoverpoint(AttrList attributes, syntax::DataTypeSyntax* type, syntax::NamedLabelSyntax* label);
     syntax::CoverCrossSyntax* parseCoverCross(AttrList attributes, syntax::NamedLabelSyntax* label);
     syntax::CoverageOptionSyntax* parseCoverageOption(AttrList attributes);
@@ -322,11 +323,11 @@ private:
     syntax::MemberSyntax* parseCoverCrossMember();
     syntax::BinsSelectExpressionSyntax& parseBinsSelectPrimary();
     syntax::BinsSelectExpressionSyntax& parseBinsSelectExpression();
-    syntax::MemberSyntax& parseConstraint(AttrList attributes, std::span<Token> qualifiers);
+    syntax::MemberSyntax& parseConstraint(AttrList attributes, std::span<Token> qualifiers, bool hasBaseClass);
     syntax::ConstraintBlockSyntax& parseConstraintBlock(bool isTopLevel);
     syntax::ConstraintItemSyntax* parseConstraintItem(bool allowBlock, bool isTopLevel);
     syntax::DistConstraintListSyntax& parseDistConstraintList();
-    syntax::DistItemSyntax& parseDistItem();
+    syntax::DistItemBaseSyntax& parseDistItem();
     syntax::ExpressionSyntax& parseArrayOrRandomizeMethod(syntax::ExpressionSyntax& expr);
     syntax::DefParamAssignmentSyntax& parseDefParamAssignment();
     syntax::DefParamSyntax& parseDefParam(AttrList attributes);
@@ -415,6 +416,7 @@ private:
     bool scanDimensionList(uint32_t& index);
     bool scanQualifiedName(uint32_t& index, bool allowNew);
     bool scanAttributes(uint32_t& index);
+    bool isStartOfAttrs(uint32_t index);
 
     template<bool (*IsEnd)(TokenKind)>
     bool scanTypePart(uint32_t& index, TokenKind start, TokenKind end);

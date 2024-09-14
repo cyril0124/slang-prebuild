@@ -56,6 +56,7 @@ add_library(slang::fmt STATIC IMPORTED)
 set_target_properties(slang::fmt PROPERTIES
   INTERFACE_COMPILE_FEATURES "cxx_std_11"
   INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include"
+  INTERFACE_SYSTEM_INCLUDE_DIRECTORIES "include"
 )
 
 # Create imported target slang::boost_unordered
@@ -70,7 +71,7 @@ add_library(slang::mimalloc-static STATIC IMPORTED)
 
 set_target_properties(slang::mimalloc-static PROPERTIES
   INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include/mimalloc-2.1;${_IMPORT_PREFIX}/include/mimalloc-2.1"
-  INTERFACE_LINK_LIBRARIES "/usr/lib/x86_64-linux-gnu/libpthread.a;/usr/lib/x86_64-linux-gnu/librt.a"
+  INTERFACE_LINK_LIBRARIES "\$<LINK_ONLY:pthread>;\$<LINK_ONLY:rt>;\$<LINK_ONLY:atomic>"
   INTERFACE_SYSTEM_INCLUDE_DIRECTORIES "include/mimalloc-2.1"
 )
 

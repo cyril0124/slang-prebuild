@@ -56,6 +56,7 @@ add_library(fmt::fmt STATIC IMPORTED)
 set_target_properties(fmt::fmt PROPERTIES
   INTERFACE_COMPILE_FEATURES "cxx_std_11"
   INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include"
+  INTERFACE_SYSTEM_INCLUDE_DIRECTORIES "include"
 )
 
 # Create imported target fmt::fmt-header-only
@@ -65,6 +66,7 @@ set_target_properties(fmt::fmt-header-only PROPERTIES
   INTERFACE_COMPILE_DEFINITIONS "FMT_HEADER_ONLY=1"
   INTERFACE_COMPILE_FEATURES "cxx_std_11"
   INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include"
+  INTERFACE_SYSTEM_INCLUDE_DIRECTORIES "include"
 )
 
 if(CMAKE_VERSION VERSION_LESS 3.0.0)

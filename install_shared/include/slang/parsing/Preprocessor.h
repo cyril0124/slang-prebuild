@@ -175,8 +175,11 @@ private:
     Trivia handleEndKeywordsDirective(Token directive);
     Trivia handleUnconnectedDriveDirective(Token directive);
     Trivia handleNoUnconnectedDriveDirective(Token directive);
+    Trivia handleDefaultDecayTimeDirective(Token directive);
+    Trivia handleDefaultTriregStrengthDirective(Token directive);
     Trivia createSimpleDirective(Token directive);
     std::pair<Trivia, Trivia> handlePragmaDirective(Token directive);
+    std::pair<Trivia, Trivia> handleProtectedDirective(Token directive);
 
     // Handle parsing a branch of a conditional directive
     syntax::ConditionalDirectiveExpressionSyntax* parseConditionalExpr();
@@ -358,9 +361,9 @@ private:
         void parseArgumentList(SmallVectorBase<syntax::TokenOrSyntax>& buffer, TFunc&& parseItem,
                                Token& closeParen);
 
-        syntax::MacroActualArgumentSyntax* parseActualArgument(Token firstToken);
+        syntax::MacroActualArgumentSyntax* parseActualArgument();
         syntax::MacroFormalArgumentSyntax* parseFormalArgument();
-        std::span<Token> parseTokenList(bool allowNewlines, Token firstToken);
+        std::span<Token> parseTokenList(bool allowNewlines);
 
         Token peek();
         Token consume();

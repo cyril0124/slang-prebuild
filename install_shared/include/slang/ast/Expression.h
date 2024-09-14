@@ -163,16 +163,17 @@ public:
 
     /// Binds an lvalue that is not a typical assignment-like context. For example, the
     /// output argument of certain system tasks that accept almost any type.
-    static const Expression& bindLValue(const ExpressionSyntax& syntax, const ASTContext& context);
+    static const Expression& bindLValue(const ExpressionSyntax& syntax, const ASTContext& context,
+                                        bitmask<AssignFlags> assignFlags = {});
 
     /// Binds the right hand side of an assignment-like expression from the given syntax nodes.
     /// @param lhs The type of the left hand side, for type checking
     /// @param rhs The syntax node representing the expression to bind
-    /// @param location The location of the assignment, for reporting diagnostics
+    /// @param assignmentRange The source range of the assignment, for reporting diagnostics
     /// @param context The AST context under which binding is performed
     /// @param extraFlags Extra flags to apply when binding
     static const Expression& bindRValue(const Type& lhs, const ExpressionSyntax& rhs,
-                                        SourceLocation location, const ASTContext& context,
+                                        SourceRange assignmentRange, const ASTContext& context,
                                         bitmask<ASTFlags> extraFlags = ASTFlags::None);
 
     /// Binds a connection to a ref argument from the given syntax nodes.
@@ -196,7 +197,7 @@ public:
     ///
     /// @param implicitType The implicit type syntax for the parameter
     /// @param rhs The initializer expression to bind
-    /// @param location The location of the initializer, for reporting diagnostics
+    /// @param assignmentRange The source range of the assignment, for reporting diagnostics
     /// @param exprContext The AST context to use for binding the initializer
     /// @param typeContext The AST context to use for binding the type
     /// @param extraFlags Extra flags to apply to AST creation
@@ -206,7 +207,7 @@ public:
     ///
     static std::tuple<const Expression*, const Type*> bindImplicitParam(
         const syntax::DataTypeSyntax& implicitType, const ExpressionSyntax& rhs,
-        SourceLocation location, const ASTContext& exprContext, const ASTContext& typeContext,
+        SourceRange assignmentRange, const ASTContext& exprContext, const ASTContext& typeContext,
         bitmask<ASTFlags> extraFlags = ASTFlags::None);
 
     /// Bind a selector expression given an already existing value expression to select from.
@@ -263,7 +264,7 @@ public:
     /// @param context The AST context
     /// @param type The type to convert to
     /// @param expr The expression being converted
-    /// @param location The location where conversion is happening, for reporting diagnostics
+    /// @param assignmentRange The source range of the assignment, for reporting diagnostics
     /// @param lhsExpr If the conversion is for an output port, this is a pointer to
     ///                the left-hand side expression. The pointer will be reassigned if
     ///                array port slicing occurs.
@@ -271,7 +272,7 @@ public:
     ///                    It will the @a AssignFlags::SlicedPort flag added to it if array
     ///                    port slicing occurs.
     static Expression& convertAssignment(const ASTContext& context, const Type& type,
-                                         Expression& expr, SourceLocation location,
+                                         Expression& expr, SourceRange assignmentRange,
                                          Expression** lhsExpr = nullptr,
                                          bitmask<AssignFlags>* assignFlags = nullptr);
 
@@ -325,9 +326,22 @@ public:
     /// represent them. If any encountered expressions have errors, returns nullopt.
     std::optional<bitwidth_t> getEffectiveWidth() const;
 
+    /// Specifies possible results of a getEffectiveSign call.
+    enum class EffectiveSign {
+        /// The expression must be unsigned.
+        Unsigned,
+
+        /// The expression must be signed.
+        Signed,
+
+        /// The expression could be either signed or unsigned,
+        /// whichever is most convenient.
+        Either
+    };
+
     /// Traverses the expression tree and determines whether all operands are known
     /// to be signed, even if the types involved end up being computed as unsigned.
-    bool getEffectiveSign() const;
+    EffectiveSign getEffectiveSign(bool isForConversion) const;
 
     /// If this expression is a reference to a symbol, returns a pointer to that symbol.
     /// If the expression is a member access of a struct or class, returns the member
@@ -339,6 +353,10 @@ public:
 
     /// Returns true if any subexpression of this expression is a hierarchical reference.
     bool hasHierarchicalReference() const;
+
+    /// If this expression is an implicit conversion, recursively unwraps to the
+    /// target operand. Otherwise returns `*this`.
+    const Expression& unwrapImplicitConversions() const;
 
     /// @brief Casts this expression to the given concrete derived type.
     ///
@@ -434,7 +452,7 @@ protected:
     // Perform type propagation and constant folding of a context-determined subexpression.
     static void contextDetermined(const ASTContext& context, Expression*& expr,
                                   const Expression* parentExpr, const Type& newType,
-                                  SourceLocation assignmentLoc = {});
+                                  SourceRange operatorRange, bool isAssignment = false);
 
     // Perform type propagation and constant folding of a self-determined subexpression.
     static void selfDetermined(const ASTContext& context, Expression*& expr);
@@ -452,6 +470,9 @@ protected:
     static bool collectArgs(const ASTContext& context, const syntax::ArgumentListSyntax& syntax,
                             SmallVectorBase<const syntax::SyntaxNode*>& orderedArgs,
                             NamedArgMap& namedArgs);
+
+    static EffectiveSign conjunction(EffectiveSign left, EffectiveSign right);
+    static bool signMatches(EffectiveSign left, EffectiveSign right);
 };
 
 /// @brief Represents an invalid expression

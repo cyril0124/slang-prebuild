@@ -58,11 +58,13 @@ inline constexpr DiagCode UnusedButSetVariable(DiagSubsystem::Compilation, 43);
 inline constexpr DiagCode UnusedDefinition(DiagSubsystem::Compilation, 44);
 inline constexpr DiagCode UnusedGenvar(DiagSubsystem::Compilation, 45);
 inline constexpr DiagCode UnusedImplicitNet(DiagSubsystem::Compilation, 46);
-inline constexpr DiagCode UnusedNet(DiagSubsystem::Compilation, 47);
-inline constexpr DiagCode UnusedParameter(DiagSubsystem::Compilation, 48);
-inline constexpr DiagCode UnusedPort(DiagSubsystem::Compilation, 49);
-inline constexpr DiagCode UnusedTypeParameter(DiagSubsystem::Compilation, 50);
-inline constexpr DiagCode UnusedTypedef(DiagSubsystem::Compilation, 51);
-inline constexpr DiagCode UnusedVariable(DiagSubsystem::Compilation, 52);
+inline constexpr DiagCode UnusedImport(DiagSubsystem::Compilation, 47);
+inline constexpr DiagCode UnusedNet(DiagSubsystem::Compilation, 48);
+inline constexpr DiagCode UnusedParameter(DiagSubsystem::Compilation, 49);
+inline constexpr DiagCode UnusedPort(DiagSubsystem::Compilation, 50);
+inline constexpr DiagCode UnusedTypeParameter(DiagSubsystem::Compilation, 51);
+inline constexpr DiagCode UnusedTypedef(DiagSubsystem::Compilation, 52);
+inline constexpr DiagCode UnusedVariable(DiagSubsystem::Compilation, 53);
+inline constexpr DiagCode UnusedWildcardImport(DiagSubsystem::Compilation, 54);
 
 }
