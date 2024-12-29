@@ -107,6 +107,12 @@ public:
     /// Determines whether the given location is from a macro expansion or an include file.
     bool isPreprocessedLoc(SourceLocation location) const;
 
+    /// Determines whether the @a left location comes before the @a right location
+    /// within the "compilation unit space", which is a hypothetical source space where
+    /// all macros and include files have been expanded out into a flat file.
+    /// Returns std::nullopt if the locations are in unrelated compilation units.
+    std::optional<bool> isBeforeInCompilationUnit(SourceLocation left, SourceLocation right) const;
+
     /// Gets the expansion location of a given macro location.
     SourceLocation getExpansionLoc(SourceLocation location) const;
 
@@ -119,6 +125,9 @@ public:
     /// Gets the actual original location where source is written, given a location
     /// inside a macro. Otherwise just returns the location itself.
     SourceLocation getFullyOriginalLoc(SourceLocation location) const;
+
+    /// Build the original location range where source is written.
+    SourceRange getFullyOriginalRange(SourceRange range) const;
 
     /// If the given location is a macro location, fully expands it out to its actual
     /// file expansion location. Otherwise just returns the location itself.

@@ -27,13 +27,14 @@ inline constexpr DiagCode NonPrintableChar(DiagSubsystem::Lexer, 12);
 inline constexpr DiagCode OctalEscapeCodeTooBig(DiagSubsystem::Lexer, 13);
 inline constexpr DiagCode TooManyLexerErrors(DiagSubsystem::Lexer, 14);
 inline constexpr DiagCode UTF8Char(DiagSubsystem::Lexer, 15);
-inline constexpr DiagCode UnicodeBOM(DiagSubsystem::Lexer, 16);
-inline constexpr DiagCode UnterminatedBlockComment(DiagSubsystem::Lexer, 17);
-inline constexpr DiagCode InvalidEncodingByte(DiagSubsystem::Lexer, 18);
-inline constexpr DiagCode InvalidUTF8Seq(DiagSubsystem::Lexer, 19);
-inline constexpr DiagCode NonstandardEscapeCode(DiagSubsystem::Lexer, 20);
-inline constexpr DiagCode ProtectEncodingBytes(DiagSubsystem::Lexer, 21);
-inline constexpr DiagCode RawProtectEOF(DiagSubsystem::Lexer, 22);
-inline constexpr DiagCode UnknownEscapeCode(DiagSubsystem::Lexer, 23);
+inline constexpr DiagCode UnclosedTranslateOff(DiagSubsystem::Lexer, 16);
+inline constexpr DiagCode UnicodeBOM(DiagSubsystem::Lexer, 17);
+inline constexpr DiagCode UnterminatedBlockComment(DiagSubsystem::Lexer, 18);
+inline constexpr DiagCode InvalidEncodingByte(DiagSubsystem::Lexer, 19);
+inline constexpr DiagCode InvalidUTF8Seq(DiagSubsystem::Lexer, 20);
+inline constexpr DiagCode NonstandardEscapeCode(DiagSubsystem::Lexer, 21);
+inline constexpr DiagCode ProtectEncodingBytes(DiagSubsystem::Lexer, 22);
+inline constexpr DiagCode RawProtectEOF(DiagSubsystem::Lexer, 23);
+inline constexpr DiagCode UnknownEscapeCode(DiagSubsystem::Lexer, 24);
 
 }

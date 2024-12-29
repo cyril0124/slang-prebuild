@@ -18,8 +18,12 @@
 #include "slang/util/Util.h"
 
 namespace slang {
+
+class JsonDiagnosticClient;
+class JsonWriter;
 class TextDiagnosticClient;
-}
+
+} // namespace slang
 
 namespace slang::syntax {
 class SyntaxTree;
@@ -66,8 +70,11 @@ public:
     /// The diagnostics engine that will be used to report diagnostics.
     DiagnosticEngine diagEngine;
 
-    /// The diagnostics client that will be used to render diagnostics.
-    std::shared_ptr<TextDiagnosticClient> diagClient;
+    /// The text diagnostics client that will be used to render diagnostics.
+    std::shared_ptr<TextDiagnosticClient> textDiagClient;
+
+    /// The (optional) JSON diagnostics client that will be used to render diagnostics.
+    std::shared_ptr<JsonDiagnosticClient> jsonDiagClient;
 
     /// The object that handles loading and parsing source files.
     SourceLoader sourceLoader;
@@ -146,6 +153,10 @@ public:
         /// The maximum number of instances allowed in a single instance array.
         std::optional<uint32_t> maxInstanceArray;
 
+        /// The maximum number of UDP coverage notes that will be generated for a single
+        /// warning about missing edge transitions.
+        std::optional<uint32_t> maxUDPCoverageNotes;
+
         /// A string indicating a member of @a CompatMode to use for tailoring
         /// other compilation options.
         std::optional<std::string> compat;
@@ -206,6 +217,10 @@ public:
         /// include hierarchy paths in printed diagnostics.
         std::optional<std::string> diagHierarchy;
 
+        /// If set, the path to a JSON file that will be written with diagnostic information.
+        /// Can be '-' to indicate that the JSON should be written to stdout.
+        std::optional<std::string> diagJson;
+
         /// The maximum number of errors to print before giving up.
         std::optional<uint32_t> errorLimit;
 
@@ -231,6 +246,7 @@ public:
 
     /// Constructs a new instance of the @a Driver class.
     Driver();
+    ~Driver();
 
     /// @brief Adds standard command line arguments to the @a cmdLine object.
     ///
@@ -324,6 +340,7 @@ private:
 
     bool anyFailedLoads = false;
     flat_hash_set<std::filesystem::path> activeCommandFiles;
+    std::unique_ptr<JsonWriter> jsonWriter;
 };
 
 } // namespace slang::driver

@@ -34,6 +34,7 @@ class ConfigBlockSymbol;
 class DefinitionSymbol;
 class Expression;
 class GenericClassDefSymbol;
+class InstanceSymbol;
 class InterfacePortSymbol;
 class MethodPrototypeSymbol;
 class ModportSymbol;
@@ -52,6 +53,7 @@ struct ResolvedConfig;
 
 using DriverIntervalMap = IntervalMap<uint64_t, const ValueDriver*>;
 using UnrollIntervalMap = IntervalMap<uint64_t, std::monostate>;
+using DriverBitRange = std::pair<uint64_t, uint64_t>;
 
 enum class IntegralFlags : uint8_t;
 enum class SymbolIndex : uint32_t;
@@ -129,9 +131,13 @@ enum class SLANG_EXPORT CompilationFlags {
 
     /// Allow merging ANSI port declarations with nets and variables
     /// declared in the module body.
-    AllowMergingAnsiPorts = 1 << 14
+    AllowMergingAnsiPorts = 1 << 14,
+
+    /// Disable the use of instance caching, which normally allows skipping
+    /// duplicate instance bodies to save time when elaborating.
+    DisableInstanceCaching = 1 << 15,
 };
-SLANG_BITMASK(CompilationFlags, AllowMergingAnsiPorts)
+SLANG_BITMASK(CompilationFlags, DisableInstanceCaching)
 
 /// Contains various options that can control compilation behavior.
 struct SLANG_EXPORT CompilationOptions {
@@ -171,6 +177,10 @@ struct SLANG_EXPORT CompilationOptions {
 
     /// The maximum depth of recursive generic class specializations.
     uint32_t maxRecursiveClassSpecialization = 8;
+
+    /// The maximum number of UDP coverage notes that will be generated for a single
+    /// warning about missing edge transitions.
+    uint32_t maxUDPCoverageNotes = 8;
 
     /// The maximum number of errors that can be found before we short circuit
     /// the tree walking process.
@@ -318,6 +328,9 @@ public:
 
     /// Gets all of the diagnostics produced during compilation.
     const Diagnostics& getAllDiagnostics();
+
+    /// Queries if any errors have been issued on any scope within this compilation.
+    bool hasIssuedErrors() const { return numErrors > 0; };
 
     /// @}
     /// @name Utility and convenience methods
@@ -573,6 +586,19 @@ public:
     /// This will cause appropriate errors to be issued.
     void noteNameConflict(const Symbol& symbol);
 
+    /// Makes note of an alias defined between the bit ranges of the two given symbols.
+    /// This is used to check for duplicate aliases between the bit ranges.
+    void noteNetAlias(const Scope& scope, const Symbol& firstSym, DriverBitRange firstRange,
+                      const Expression& firstExpr, const Symbol& secondSym,
+                      DriverBitRange secondRange, const Expression& secondExpr);
+
+    /// Notes the existence of the given hierarchical reference, which is used,
+    /// among other things, to ensure we perform instance caching correctly.
+    void noteHierarchicalReference(const Scope& scope, const HierarchicalReference& ref);
+
+    /// Notes the existence of a virtual interface type declaration for the given instance.
+    void noteVirtualIfaceInstance(const InstanceSymbol& instance);
+
     /// Adds a set of diagnostics to the compilation's list of semantic diagnostics.
     void addDiagnostics(const Diagnostics& diagnostics);
 
@@ -708,11 +734,12 @@ public:
     /// Creates an empty ImplicitTypeSyntax object.
     const syntax::ImplicitTypeSyntax& createEmptyTypeSyntax(SourceLocation loc);
 
-    /// @{
+    /// @}
 
 private:
     friend class Lookup;
     friend class Scope;
+    friend struct DiagnosticVisitor;
 
     // Collected information about a resolved bind directive.
     struct ResolvedBind {
@@ -746,6 +773,7 @@ private:
                             ResolvedBind& resolvedBind);
     void checkBindTargetParams(const syntax::BindDirectiveSyntax& syntax, const Scope& scope,
                                const ResolvedBind& resolvedBind);
+    void checkVirtualIfaceInstance(const InstanceSymbol& instance);
     std::pair<DefinitionLookupResult, bool> resolveConfigRule(const Scope& scope,
                                                               const ConfigRule& rule) const;
     std::pair<DefinitionLookupResult, bool> resolveConfigRules(
@@ -821,6 +849,9 @@ private:
     // Map from pointers (to symbols, statements, expressions) to their associated attributes.
     flat_hash_map<const void*, std::span<const AttributeSymbol* const>> attributeMap;
 
+    // Map from instance bodies to hierarchical references that extend up through them.
+    flat_hash_map<const Symbol*, std::vector<const HierarchicalReference*>> hierRefMap;
+
     struct SyntaxMetadata {
         const syntax::SyntaxTree* tree = nullptr;
         const NetType* defaultNetType = nullptr;
@@ -842,6 +873,9 @@ private:
     // A list of libraries that control the order in which we search for cell bindings.
     std::vector<const SourceLibrary*> defaultLiblist;
 
+    // A list of instances that have been created by virtual interface type declarations.
+    std::vector<const InstanceSymbol*> virtualInterfaceInstances;
+
     // A map from class name + decl name + scope to out-of-block declarations. These get
     // registered when we find the initial declaration and later get used when we see
     // the class prototype. The value also includes a boolean indicating whether anything
@@ -857,6 +891,7 @@ private:
     bool finalized = false;
     bool finalizing = false; // to prevent reentrant calls to getRoot()
     bool anyElemsWithTimescales = false;
+    bool diagsDisabled = false;
     uint32_t typoCorrections = 0;
     int nextEnumSystemId = 1;
     int nextStructSystemId = 1;
@@ -941,6 +976,20 @@ private:
     // The key is a combination of definition name + the scope in which it was declared.
     flat_hash_map<std::tuple<std::string_view, const Scope*>, const syntax::SyntaxNode*>
         externDefMap;
+
+    struct NetAlias {
+        const Symbol* sym;
+        DriverBitRange range;
+        const Expression* firstExpr;
+        const Expression* secondExpr;
+    };
+
+    using AliasIntervalMap = IntervalMap<uint64_t, const NetAlias*>;
+    AliasIntervalMap::allocator_type netAliasAllocator;
+
+    // A map of net aliases to check for duplicates. For any given alias the key is
+    // whichever symbol has the lower address in memory.
+    flat_hash_map<const Symbol*, AliasIntervalMap> netAliases;
 
     // The built-in std package.
     const PackageSymbol* stdPkg = nullptr;

@@ -66,56 +66,6 @@ enum class VariableFlags : uint16_t;
 SLANG_ENUM(ExpressionKind, EXPRESSION)
 #undef EXPRESSION
 
-#define OP(x) \
-    x(Plus) \
-    x(Minus) \
-    x(BitwiseNot) \
-    x(BitwiseAnd) \
-    x(BitwiseOr) \
-    x(BitwiseXor) \
-    x(BitwiseNand) \
-    x(BitwiseNor) \
-    x(BitwiseXnor) \
-    x(LogicalNot) \
-    x(Preincrement) \
-    x(Predecrement) \
-    x(Postincrement) \
-    x(Postdecrement)
-SLANG_ENUM(UnaryOperator, OP)
-#undef OP
-
-#define OP(x) \
-    x(Add) \
-    x(Subtract) \
-    x(Multiply) \
-    x(Divide) \
-    x(Mod) \
-    x(BinaryAnd) \
-    x(BinaryOr) \
-    x(BinaryXor) \
-    x(BinaryXnor) \
-    x(Equality) \
-    x(Inequality) \
-    x(CaseEquality) \
-    x(CaseInequality) \
-    x(GreaterThanEqual) \
-    x(GreaterThan) \
-    x(LessThanEqual) \
-    x(LessThan) \
-    x(WildcardEquality) \
-    x(WildcardInequality) \
-    x(LogicalAnd) \
-    x(LogicalOr) \
-    x(LogicalImplication) \
-    x(LogicalEquivalence) \
-    x(LogicalShiftLeft) \
-    x(LogicalShiftRight) \
-    x(ArithmeticShiftLeft) \
-    x(ArithmeticShiftRight) \
-    x(Power)
-SLANG_ENUM(BinaryOperator, OP)
-#undef OP
-
 #define RANGE(x) x(Simple) x(IndexedUp) x(IndexedDown)
 SLANG_ENUM(RangeSelectionKind, RANGE)
 #undef RANGE
@@ -298,7 +248,7 @@ public:
     /// Evaluates the expression as a selector and returns the selection range that
     /// results. If the evaluates fails or the expression does not represent a selection
     /// std::nullopt will be returned.
-    std::optional<ConstantRange> evalSelector(EvalContext& context) const;
+    std::optional<ConstantRange> evalSelector(EvalContext& context, bool enforceBounds) const;
 
     /// Verifies that this expression is a valid lvalue and that each element
     /// of that lvalue can be assigned to. If it's not, appropriate diagnostics
@@ -354,6 +304,10 @@ public:
     /// Returns true if any subexpression of this expression is a hierarchical reference.
     bool hasHierarchicalReference() const;
 
+    /// Returns true if this expression is known to be within a pair of parentheses,
+    /// and otherwise false.
+    bool isParenthesized() const;
+
     /// If this expression is an implicit conversion, recursively unwraps to the
     /// target operand. Otherwise returns `*this`.
     const Expression& unwrapImplicitConversions() const;
@@ -407,15 +361,6 @@ public:
 protected:
     Expression(ExpressionKind kind, const Type& type, SourceRange sourceRange) :
         kind(kind), type(&type), sourceRange(sourceRange) {}
-
-    static UnaryOperator getUnaryOperator(syntax::SyntaxKind kind);
-    static BinaryOperator getBinaryOperator(syntax::SyntaxKind kind);
-
-    static const Type* binaryOperatorType(Compilation& compilation, const Type* lt, const Type* rt,
-                                          bool forceFourState, bool signednessFromRt = false);
-
-    static ConstantValue evalBinaryOperator(BinaryOperator op, const ConstantValue& cvl,
-                                            const ConstantValue& cvr);
 
     static Expression& create(Compilation& compilation, const ExpressionSyntax& syntax,
                               const ASTContext& context,

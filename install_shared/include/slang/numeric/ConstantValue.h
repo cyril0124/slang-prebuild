@@ -173,6 +173,8 @@ public:
     /// Gets the size of this value when converted to a bitstream.
     uint64_t getBitstreamWidth() const;
 
+    std::optional<bitwidth_t> getEffectiveWidth() const;
+
     static const ConstantValue Invalid;
 
     SLANG_EXPORT friend std::ostream& operator<<(std::ostream& os, const ConstantValue& cv);
@@ -346,6 +348,9 @@ struct SLANG_EXPORT ConstantRange {
     /// Selects a subrange of this range, correctly handling both forms of
     /// bit endianness. This will assert that the given subrange is not wider.
     [[nodiscard]] ConstantRange subrange(ConstantRange select) const;
+
+    /// Return the intersection range with other.
+    [[nodiscard]] ConstantRange intersect(ConstantRange other) const;
 
     /// Translates the given index to be relative to the range.
     /// For example, if the range is [7:2] and you pass in 3, the result will be 1.

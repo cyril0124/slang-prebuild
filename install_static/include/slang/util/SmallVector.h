@@ -8,6 +8,7 @@
 #pragma once
 
 #include <algorithm>
+#include <iterator>
 #include <limits>
 #include <memory>
 #include <span>
@@ -114,7 +115,7 @@ public:
     /// @return the maximum number of elements that could ever fit in the array,
     /// assuming the system had enough memory to support it.
     [[nodiscard]] constexpr size_type max_size() const noexcept {
-        return std::numeric_limits<difference_type>::max();
+        return std::numeric_limits<difference_type>::max() / sizeof(T);
     }
 
     /// @return true if the array is empty, and false if it has elements in it.
@@ -679,25 +680,9 @@ inline bool operator==(const SmallVectorBase<T>& lhs, const SmallVectorBase<T>& 
     return std::ranges::equal(lhs, rhs);
 }
 
-// TODO: clean these up once minimum libc++ version has lexicographical_compare_three_way
 template<typename T>
-inline bool operator<(const SmallVectorBase<T>& lhs, const SmallVectorBase<T>& rhs) {
-    return std::ranges::lexicographical_compare(lhs, rhs);
-}
-
-template<typename T>
-inline bool operator>(const SmallVectorBase<T>& lhs, const SmallVectorBase<T>& rhs) {
-    return rhs < lhs;
-}
-
-template<typename T>
-inline bool operator<=(const SmallVectorBase<T>& lhs, const SmallVectorBase<T>& rhs) {
-    return !(lhs > rhs);
-}
-
-template<typename T>
-inline bool operator>=(const SmallVectorBase<T>& lhs, const SmallVectorBase<T>& rhs) {
-    return !(lhs < rhs);
+inline auto operator<=>(const SmallVectorBase<T>& lhs, const SmallVectorBase<T>& rhs) {
+    return std::lexicographical_compare_three_way(lhs.begin(), lhs.end(), rhs.begin(), rhs.end());
 }
 
 template<typename T>

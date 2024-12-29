@@ -95,13 +95,15 @@ public:
 
     explicit operator bool() const { return valid(); }
 
-    /// If the trivia is raw source text, creates a new trivia with the specified location
-    /// (instead of implicitly offset from the parent token). If this trivia is for a
-    /// directive or skipped tokens, returns a copy without modification.
-    [[nodiscard]] Trivia withLocation(BumpAllocator& alloc, SourceLocation location) const;
+    /// If the trivia is raw source text, creates a new trivia attached from behind
+    /// to the specified location (instead of implicitly offset from the parent token).
+    /// If this trivia is for a directive or skipped tokens, returns a copy without
+    /// modification.
+    [[nodiscard]] Trivia withLocation(BumpAllocator& alloc, SourceLocation anchorLocation) const;
 
     /// Gets the source location of the trivia if one is explicitly known. If not, nullopt
-    /// is returned to signify that the location is implicitly relative to the parent token.
+    /// is returned to signify that the location is implicitly relative to the parent token
+    /// or subsequent trivia.
     std::optional<SourceLocation> getExplicitLocation() const;
 
     /// If this trivia is tracking a skipped syntax node or a directive, returns that node.
@@ -115,7 +117,7 @@ public:
     /// skipped. Otherwise returns an empty span.
     std::span<Token const> getSkippedTokens() const;
 
-    Trivia clone(BumpAllocator& alloc) const;
+    Trivia clone(BumpAllocator& alloc, bool deep = false) const;
 };
 #if !defined(_M_IX86) && !defined(__clang_analyzer__)
 static_assert(sizeof(Trivia) == 16);

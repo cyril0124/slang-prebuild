@@ -84,6 +84,7 @@ struct SLANG_EXPORT EqualsValueClauseSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -104,6 +105,7 @@ struct SLANG_EXPORT AttributeSpecSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -129,6 +131,7 @@ struct SLANG_EXPORT AttributeInstanceSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -148,6 +151,7 @@ struct SLANG_EXPORT NamedLabelSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -171,6 +175,7 @@ struct SLANG_EXPORT StatementSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -192,6 +197,7 @@ struct SLANG_EXPORT MemberSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -221,6 +227,7 @@ struct SLANG_EXPORT EmptyArgumentSyntax : public ArgumentSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -240,6 +247,7 @@ struct SLANG_EXPORT OrderedArgumentSyntax : public ArgumentSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -263,6 +271,7 @@ struct SLANG_EXPORT NamedArgumentSyntax : public ArgumentSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -286,6 +295,7 @@ struct SLANG_EXPORT ArgumentListSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -316,6 +326,7 @@ struct SLANG_EXPORT OrderedParamAssignmentSyntax : public ParamAssignmentSyntax 
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -339,6 +350,7 @@ struct SLANG_EXPORT NamedParamAssignmentSyntax : public ParamAssignmentSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -363,6 +375,7 @@ struct SLANG_EXPORT ParameterValueAssignmentSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -395,6 +408,7 @@ struct SLANG_EXPORT ParenthesizedPatternSyntax : public PatternSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -414,6 +428,7 @@ struct SLANG_EXPORT VariablePatternSyntax : public PatternSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -433,6 +448,7 @@ struct SLANG_EXPORT WildcardPatternSyntax : public PatternSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -452,6 +468,7 @@ struct SLANG_EXPORT ExpressionPatternSyntax : public PatternSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -473,6 +490,7 @@ struct SLANG_EXPORT TaggedPatternSyntax : public PatternSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -503,6 +521,7 @@ struct SLANG_EXPORT OrderedStructurePatternMemberSyntax : public StructurePatter
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -524,6 +543,7 @@ struct SLANG_EXPORT NamedStructurePatternMemberSyntax : public StructurePatternM
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -547,6 +567,7 @@ struct SLANG_EXPORT StructurePatternSyntax : public PatternSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -567,6 +588,7 @@ struct SLANG_EXPORT MatchesClauseSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -588,6 +610,7 @@ struct SLANG_EXPORT ConditionalPatternSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -609,6 +632,7 @@ struct SLANG_EXPORT ConditionalPredicateSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -643,6 +667,7 @@ struct SLANG_EXPORT SimpleAssignmentPatternSyntax : public AssignmentPatternSynt
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -665,6 +690,7 @@ struct SLANG_EXPORT AssignmentPatternItemSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -688,6 +714,7 @@ struct SLANG_EXPORT StructuredAssignmentPatternSyntax : public AssignmentPattern
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -715,6 +742,7 @@ struct SLANG_EXPORT ReplicatedAssignmentPatternSyntax : public AssignmentPattern
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -734,6 +762,7 @@ struct SLANG_EXPORT BadExpressionSyntax : public ExpressionSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -769,6 +798,7 @@ struct SLANG_EXPORT PrefixUnaryExpressionSyntax : public ExpressionSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -793,6 +823,7 @@ struct SLANG_EXPORT PostfixUnaryExpressionSyntax : public ExpressionSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -819,6 +850,7 @@ struct SLANG_EXPORT BinaryExpressionSyntax : public ExpressionSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -844,6 +876,7 @@ struct SLANG_EXPORT MinTypMaxExpressionSyntax : public ExpressionSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -865,6 +898,7 @@ struct SLANG_EXPORT TaggedUnionExpressionSyntax : public ExpressionSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -889,6 +923,7 @@ struct SLANG_EXPORT ValueRangeExpressionSyntax : public ExpressionSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -912,6 +947,7 @@ struct SLANG_EXPORT RangeListSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -934,6 +970,7 @@ struct SLANG_EXPORT InsideExpressionSyntax : public ExpressionSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -963,6 +1000,7 @@ struct SLANG_EXPORT ConditionalExpressionSyntax : public ExpressionSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -984,6 +1022,7 @@ struct SLANG_EXPORT AssignmentPatternExpressionSyntax : public PrimaryExpression
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -1014,6 +1053,7 @@ struct SLANG_EXPORT BitSelectSyntax : public SelectorSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -1036,6 +1076,7 @@ struct SLANG_EXPORT RangeSelectSyntax : public SelectorSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -1057,6 +1098,7 @@ struct SLANG_EXPORT ElementSelectSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -1086,6 +1128,7 @@ struct SLANG_EXPORT IdentifierNameSyntax : public NameSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -1104,6 +1147,7 @@ struct SLANG_EXPORT SystemNameSyntax : public NameSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -1126,6 +1170,7 @@ struct SLANG_EXPORT IdentifierSelectNameSyntax : public NameSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -1144,6 +1189,7 @@ struct SLANG_EXPORT EmptyIdentifierNameSyntax : public NameSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -1162,6 +1208,7 @@ struct SLANG_EXPORT KeywordNameSyntax : public NameSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -1182,6 +1229,7 @@ struct SLANG_EXPORT ClassNameSyntax : public NameSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -1204,6 +1252,7 @@ struct SLANG_EXPORT ScopedNameSyntax : public NameSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -1222,6 +1271,7 @@ struct SLANG_EXPORT LiteralExpressionSyntax : public PrimaryExpressionSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -1242,6 +1292,7 @@ struct SLANG_EXPORT IntegerVectorExpressionSyntax : public PrimaryExpressionSynt
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -1261,6 +1312,7 @@ struct SLANG_EXPORT EmptyQueueExpressionSyntax : public PrimaryExpressionSyntax 
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -1284,6 +1336,7 @@ struct SLANG_EXPORT ConcatenationExpressionSyntax : public PrimaryExpressionSynt
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -1307,6 +1360,7 @@ struct SLANG_EXPORT MultipleConcatenationExpressionSyntax : public PrimaryExpres
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -1327,6 +1381,7 @@ struct SLANG_EXPORT StreamExpressionWithRangeSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -1348,6 +1403,7 @@ struct SLANG_EXPORT StreamExpressionSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -1376,6 +1432,7 @@ struct SLANG_EXPORT StreamingConcatenationExpressionSyntax : public PrimaryExpre
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -1397,6 +1454,7 @@ struct SLANG_EXPORT ParenthesizedExpressionSyntax : public PrimaryExpressionSynt
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -1422,6 +1480,7 @@ struct SLANG_EXPORT NewArrayExpressionSyntax : public ExpressionSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -1443,6 +1502,7 @@ struct SLANG_EXPORT NewClassExpressionSyntax : public ExpressionSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -1464,6 +1524,7 @@ struct SLANG_EXPORT CopyClassExpressionSyntax : public ExpressionSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -1486,6 +1547,7 @@ struct SLANG_EXPORT SuperNewDefaultedArgsExpressionSyntax : public ExpressionSyn
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -1507,6 +1569,7 @@ struct SLANG_EXPORT ElementSelectExpressionSyntax : public ExpressionSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -1528,6 +1591,7 @@ struct SLANG_EXPORT MemberAccessExpressionSyntax : public ExpressionSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -1553,6 +1617,7 @@ struct SLANG_EXPORT InvocationExpressionSyntax : public ExpressionSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -1575,6 +1640,7 @@ struct SLANG_EXPORT CastExpressionSyntax : public ExpressionSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -1596,6 +1662,7 @@ struct SLANG_EXPORT SignedCastExpressionSyntax : public ExpressionSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -1616,6 +1683,7 @@ struct SLANG_EXPORT DelaySyntax : public TimingControlSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -1644,6 +1712,7 @@ struct SLANG_EXPORT Delay3Syntax : public TimingControlSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -1663,6 +1732,7 @@ struct SLANG_EXPORT OneStepDelaySyntax : public TimingControlSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -1683,6 +1753,7 @@ struct SLANG_EXPORT EventControlSyntax : public TimingControlSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -1703,6 +1774,7 @@ struct SLANG_EXPORT IffEventClauseSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -1736,6 +1808,7 @@ struct SLANG_EXPORT SignalEventExpressionSyntax : public EventExpressionSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -1758,6 +1831,7 @@ struct SLANG_EXPORT BinaryEventExpressionSyntax : public EventExpressionSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -1779,6 +1853,7 @@ struct SLANG_EXPORT ParenthesizedEventExpressionSyntax : public EventExpressionS
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -1800,6 +1875,7 @@ struct SLANG_EXPORT ImplicitEventControlSyntax : public TimingControlSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -1820,6 +1896,7 @@ struct SLANG_EXPORT EventControlWithExpressionSyntax : public TimingControlSynta
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -1844,6 +1921,7 @@ struct SLANG_EXPORT RepeatedEventControlSyntax : public TimingControlSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -1865,6 +1943,7 @@ struct SLANG_EXPORT TimingControlExpressionSyntax : public ExpressionSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -1895,6 +1974,7 @@ struct SLANG_EXPORT RangeDimensionSpecifierSyntax : public DimensionSpecifierSyn
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -1913,6 +1993,7 @@ struct SLANG_EXPORT WildcardDimensionSpecifierSyntax : public DimensionSpecifier
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -1933,6 +2014,7 @@ struct SLANG_EXPORT ColonExpressionClauseSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -1953,6 +2035,7 @@ struct SLANG_EXPORT QueueDimensionSpecifierSyntax : public DimensionSpecifierSyn
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -1974,6 +2057,7 @@ struct SLANG_EXPORT VariableDimensionSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -1998,6 +2082,7 @@ struct SLANG_EXPORT DeclaratorSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -2024,6 +2109,7 @@ struct SLANG_EXPORT DataDeclarationSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -2043,6 +2129,7 @@ struct SLANG_EXPORT ForwardTypeRestrictionSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -2069,6 +2156,7 @@ struct SLANG_EXPORT TypedefDeclarationSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -2091,6 +2179,7 @@ struct SLANG_EXPORT ForwardTypedefDeclarationSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -2122,6 +2211,7 @@ struct SLANG_EXPORT ChargeStrengthSyntax : public NetStrengthSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -2144,6 +2234,7 @@ struct SLANG_EXPORT DriveStrengthSyntax : public NetStrengthSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -2164,6 +2255,7 @@ struct SLANG_EXPORT PullStrengthSyntax : public NetStrengthSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -2194,6 +2286,7 @@ struct SLANG_EXPORT NetDeclarationSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -2219,6 +2312,7 @@ struct SLANG_EXPORT UserDefinedNetDeclarationSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -2239,6 +2333,7 @@ struct SLANG_EXPORT WithFunctionClauseSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -2263,6 +2358,7 @@ struct SLANG_EXPORT NetTypeDeclarationSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -2283,6 +2379,7 @@ struct SLANG_EXPORT PackageImportItemSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -2306,6 +2403,7 @@ struct SLANG_EXPORT PackageImportDeclarationSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -2329,6 +2427,7 @@ struct SLANG_EXPORT PackageExportDeclarationSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -2351,6 +2450,7 @@ struct SLANG_EXPORT PackageExportAllDeclarationSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -2369,6 +2469,7 @@ struct SLANG_EXPORT ParameterDeclarationBaseSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -2392,6 +2493,7 @@ struct SLANG_EXPORT ParameterDeclarationSyntax : public ParameterDeclarationBase
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -2412,6 +2514,7 @@ struct SLANG_EXPORT EqualsTypeClauseSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -2432,6 +2535,7 @@ struct SLANG_EXPORT TypeAssignmentSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -2456,6 +2560,7 @@ struct SLANG_EXPORT TypeParameterDeclarationSyntax : public ParameterDeclaration
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -2476,6 +2581,7 @@ struct SLANG_EXPORT ParameterDeclarationStatementSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -2511,6 +2617,7 @@ struct SLANG_EXPORT PortDeclarationSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -2534,6 +2641,7 @@ struct SLANG_EXPORT GenvarDeclarationSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -2563,6 +2671,7 @@ struct SLANG_EXPORT DefaultFunctionPortSyntax : public FunctionPortBaseSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -2592,6 +2701,7 @@ struct SLANG_EXPORT FunctionPortSyntax : public FunctionPortBaseSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -2615,6 +2725,7 @@ struct SLANG_EXPORT FunctionPortListSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -2638,6 +2749,7 @@ struct SLANG_EXPORT IntegerTypeSyntax : public DataTypeSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -2656,6 +2768,7 @@ struct SLANG_EXPORT KeywordTypeSyntax : public DataTypeSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -2675,6 +2788,7 @@ struct SLANG_EXPORT NamedTypeSyntax : public DataTypeSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -2704,6 +2818,7 @@ struct SLANG_EXPORT StructUnionMemberSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -2735,6 +2850,7 @@ struct SLANG_EXPORT StructUnionTypeSyntax : public DataTypeSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -2765,6 +2881,7 @@ struct SLANG_EXPORT EnumTypeSyntax : public DataTypeSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -2787,6 +2904,7 @@ struct SLANG_EXPORT TypeReferenceSyntax : public DataTypeSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -2806,6 +2924,7 @@ struct SLANG_EXPORT DotMemberClauseSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -2830,6 +2949,7 @@ struct SLANG_EXPORT VirtualInterfaceTypeSyntax : public DataTypeSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -2853,6 +2973,7 @@ struct SLANG_EXPORT ImplicitTypeSyntax : public DataTypeSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -2873,6 +2994,7 @@ struct SLANG_EXPORT DeferredAssertionSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -2893,6 +3015,7 @@ struct SLANG_EXPORT ElseClauseSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -2914,6 +3037,7 @@ struct SLANG_EXPORT ActionBlockSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -2938,6 +3062,7 @@ struct SLANG_EXPORT ImmediateAssertionStatementSyntax : public StatementSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -2961,6 +3086,7 @@ struct SLANG_EXPORT DisableIffSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -2984,6 +3110,7 @@ struct SLANG_EXPORT PropertySpecSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -3009,6 +3136,7 @@ struct SLANG_EXPORT ConcurrentAssertionStatementSyntax : public StatementSyntax 
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -3028,6 +3156,7 @@ struct SLANG_EXPORT ConcurrentAssertionMemberSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -3047,6 +3176,7 @@ struct SLANG_EXPORT ImmediateAssertionMemberSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -3065,6 +3195,7 @@ struct SLANG_EXPORT EmptyStatementSyntax : public StatementSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -3092,6 +3223,7 @@ struct SLANG_EXPORT ConditionalStatementSyntax : public StatementSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -3124,6 +3256,7 @@ struct SLANG_EXPORT DefaultCaseItemSyntax : public CaseItemSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -3149,6 +3282,7 @@ struct SLANG_EXPORT PatternCaseItemSyntax : public CaseItemSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -3173,6 +3307,7 @@ struct SLANG_EXPORT StandardCaseItemSyntax : public CaseItemSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -3202,6 +3337,7 @@ struct SLANG_EXPORT CaseStatementSyntax : public StatementSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -3222,6 +3358,7 @@ struct SLANG_EXPORT ForeverStatementSyntax : public StatementSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -3246,6 +3383,7 @@ struct SLANG_EXPORT LoopStatementSyntax : public StatementSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -3272,6 +3410,7 @@ struct SLANG_EXPORT DoWhileStatementSyntax : public StatementSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -3294,6 +3433,7 @@ struct SLANG_EXPORT ForVariableDeclarationSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -3328,6 +3468,7 @@ struct SLANG_EXPORT ForLoopStatementSyntax : public StatementSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -3355,6 +3496,7 @@ struct SLANG_EXPORT ForeachLoopListSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -3377,6 +3519,7 @@ struct SLANG_EXPORT ForeachLoopStatementSyntax : public StatementSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -3398,6 +3541,7 @@ struct SLANG_EXPORT ReturnStatementSyntax : public StatementSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -3417,6 +3561,7 @@ struct SLANG_EXPORT JumpStatementSyntax : public StatementSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -3438,6 +3583,7 @@ struct SLANG_EXPORT TimingControlStatementSyntax : public StatementSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -3458,6 +3604,7 @@ struct SLANG_EXPORT ExpressionStatementSyntax : public StatementSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -3482,6 +3629,7 @@ struct SLANG_EXPORT VoidCastedCallStatementSyntax : public StatementSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -3503,6 +3651,7 @@ struct SLANG_EXPORT ProceduralAssignStatementSyntax : public StatementSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -3524,6 +3673,7 @@ struct SLANG_EXPORT ProceduralDeassignStatementSyntax : public StatementSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -3545,6 +3695,7 @@ struct SLANG_EXPORT DisableStatementSyntax : public StatementSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -3565,6 +3716,7 @@ struct SLANG_EXPORT DisableForkStatementSyntax : public StatementSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -3584,6 +3736,7 @@ struct SLANG_EXPORT NamedBlockClauseSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -3611,6 +3764,7 @@ struct SLANG_EXPORT BlockStatementSyntax : public StatementSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -3635,6 +3789,7 @@ struct SLANG_EXPORT WaitStatementSyntax : public StatementSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -3655,6 +3810,7 @@ struct SLANG_EXPORT WaitForkStatementSyntax : public StatementSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -3681,6 +3837,7 @@ struct SLANG_EXPORT WaitOrderStatementSyntax : public StatementSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -3703,6 +3860,7 @@ struct SLANG_EXPORT RandCaseItemSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -3726,6 +3884,7 @@ struct SLANG_EXPORT RandCaseStatementSyntax : public StatementSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -3757,6 +3916,7 @@ struct SLANG_EXPORT RsProdItemSyntax : public RsProdSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -3780,6 +3940,7 @@ struct SLANG_EXPORT RsCodeBlockSyntax : public RsProdSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -3800,6 +3961,7 @@ struct SLANG_EXPORT RsElseClauseSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -3826,6 +3988,7 @@ struct SLANG_EXPORT RsIfElseSyntax : public RsProdSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -3850,6 +4013,7 @@ struct SLANG_EXPORT RsRepeatSyntax : public RsProdSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -3883,6 +4047,7 @@ struct SLANG_EXPORT DefaultRsCaseItemSyntax : public RsCaseItemSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -3908,6 +4073,7 @@ struct SLANG_EXPORT StandardRsCaseItemSyntax : public RsCaseItemSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -3935,6 +4101,7 @@ struct SLANG_EXPORT RsCaseSyntax : public RsProdSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -3956,6 +4123,7 @@ struct SLANG_EXPORT RandJoinClauseSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -3978,6 +4146,7 @@ struct SLANG_EXPORT RsWeightClauseSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -4003,6 +4172,7 @@ struct SLANG_EXPORT RsRuleSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -4031,6 +4201,7 @@ struct SLANG_EXPORT ProductionSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -4057,6 +4228,7 @@ struct SLANG_EXPORT RandSequenceStatementSyntax : public StatementSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -4080,6 +4252,7 @@ struct SLANG_EXPORT EventTriggerStatementSyntax : public StatementSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -4133,6 +4306,7 @@ struct SLANG_EXPORT PortReferenceSyntax : public PortExpressionSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -4156,6 +4330,7 @@ struct SLANG_EXPORT PortConcatenationSyntax : public PortExpressionSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -4174,6 +4349,7 @@ struct SLANG_EXPORT EmptyNonAnsiPortSyntax : public NonAnsiPortSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -4193,6 +4369,7 @@ struct SLANG_EXPORT ImplicitNonAnsiPortSyntax : public NonAnsiPortSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -4216,6 +4393,7 @@ struct SLANG_EXPORT ExplicitNonAnsiPortSyntax : public NonAnsiPortSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -4239,6 +4417,7 @@ struct SLANG_EXPORT NonAnsiPortListSyntax : public PortListSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -4259,6 +4438,7 @@ struct SLANG_EXPORT InterfacePortHeaderSyntax : public PortHeaderSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -4281,6 +4461,7 @@ struct SLANG_EXPORT VariablePortHeaderSyntax : public PortHeaderSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -4302,6 +4483,7 @@ struct SLANG_EXPORT NetPortHeaderSyntax : public PortHeaderSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -4323,6 +4505,7 @@ struct SLANG_EXPORT ImplicitAnsiPortSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -4347,6 +4530,7 @@ struct SLANG_EXPORT ExplicitAnsiPortSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -4370,6 +4554,7 @@ struct SLANG_EXPORT AnsiPortListSyntax : public PortListSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -4391,6 +4576,7 @@ struct SLANG_EXPORT WildcardPortListSyntax : public PortListSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -4415,6 +4601,7 @@ struct SLANG_EXPORT ParameterPortListSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -4444,6 +4631,7 @@ struct SLANG_EXPORT ModuleHeaderSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -4470,6 +4658,7 @@ struct SLANG_EXPORT ModuleDeclarationSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -4494,6 +4683,7 @@ struct SLANG_EXPORT AnonymousProgramSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -4514,6 +4704,7 @@ struct SLANG_EXPORT EmptyMemberSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -4534,6 +4725,7 @@ struct SLANG_EXPORT ProceduralBlockSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -4557,6 +4749,7 @@ struct SLANG_EXPORT GenerateRegionSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -4590,6 +4783,7 @@ struct SLANG_EXPORT LoopGenerateSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -4616,6 +4810,7 @@ struct SLANG_EXPORT IfGenerateSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -4643,6 +4838,7 @@ struct SLANG_EXPORT CaseGenerateSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -4672,6 +4868,7 @@ struct SLANG_EXPORT GenerateBlockSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -4691,6 +4888,7 @@ struct SLANG_EXPORT DividerClauseSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -4713,6 +4911,7 @@ struct SLANG_EXPORT TimeUnitsDeclarationSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -4734,6 +4933,7 @@ struct SLANG_EXPORT PortConnectionSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -4752,6 +4952,7 @@ struct SLANG_EXPORT EmptyPortConnectionSyntax : public PortConnectionSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -4771,6 +4972,7 @@ struct SLANG_EXPORT OrderedPortConnectionSyntax : public PortConnectionSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -4794,6 +4996,7 @@ struct SLANG_EXPORT NamedPortConnectionSyntax : public PortConnectionSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -4813,6 +5016,7 @@ struct SLANG_EXPORT WildcardPortConnectionSyntax : public PortConnectionSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -4835,6 +5039,7 @@ struct SLANG_EXPORT InstanceNameSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -4860,6 +5065,7 @@ struct SLANG_EXPORT HierarchicalInstanceSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -4885,6 +5091,7 @@ struct SLANG_EXPORT HierarchyInstantiationSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -4912,6 +5119,7 @@ struct SLANG_EXPORT PrimitiveInstantiationSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -4938,6 +5146,7 @@ struct SLANG_EXPORT CheckerInstantiationSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -4957,6 +5166,7 @@ struct SLANG_EXPORT CheckerInstanceStatementSyntax : public StatementSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -4979,6 +5189,7 @@ struct SLANG_EXPORT BindTargetListSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -5003,6 +5214,7 @@ struct SLANG_EXPORT BindDirectiveSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -5022,6 +5234,7 @@ struct SLANG_EXPORT ClassSpecifierSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -5051,6 +5264,7 @@ struct SLANG_EXPORT FunctionPrototypeSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -5078,6 +5292,7 @@ struct SLANG_EXPORT FunctionDeclarationSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -5098,6 +5313,7 @@ struct SLANG_EXPORT EqualsAssertionArgClauseSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -5130,6 +5346,7 @@ struct SLANG_EXPORT AssertionItemPortSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -5153,6 +5370,7 @@ struct SLANG_EXPORT AssertionItemPortListSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -5178,6 +5396,7 @@ struct SLANG_EXPORT LetDeclarationSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -5198,6 +5417,7 @@ struct SLANG_EXPORT DefaultExtendsClauseArgSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -5222,6 +5442,7 @@ struct SLANG_EXPORT ExtendsClauseSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -5244,6 +5465,7 @@ struct SLANG_EXPORT ImplementsClauseSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -5280,6 +5502,7 @@ struct SLANG_EXPORT ClassDeclarationSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -5301,6 +5524,7 @@ struct SLANG_EXPORT ClassPropertyDeclarationSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -5322,6 +5546,7 @@ struct SLANG_EXPORT ClassMethodDeclarationSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -5344,6 +5569,7 @@ struct SLANG_EXPORT ClassMethodPrototypeSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -5371,6 +5597,7 @@ struct SLANG_EXPORT ContinuousAssignSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -5392,6 +5619,7 @@ struct SLANG_EXPORT DefParamAssignmentSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -5415,6 +5643,7 @@ struct SLANG_EXPORT DefParamSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -5434,6 +5663,7 @@ struct SLANG_EXPORT ModportClockingPortSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -5463,6 +5693,7 @@ struct SLANG_EXPORT ModportNamedPortSyntax : public ModportPortSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -5486,6 +5717,7 @@ struct SLANG_EXPORT ModportExplicitPortSyntax : public ModportPortSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -5508,6 +5740,7 @@ struct SLANG_EXPORT ModportSimplePortListSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -5527,6 +5760,7 @@ struct SLANG_EXPORT ModportSubroutinePortSyntax : public ModportPortSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -5549,6 +5783,7 @@ struct SLANG_EXPORT ModportSubroutinePortListSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -5569,6 +5804,7 @@ struct SLANG_EXPORT ModportItemSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -5592,6 +5828,7 @@ struct SLANG_EXPORT ModportDeclarationSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -5612,6 +5849,7 @@ struct SLANG_EXPORT ClockingSkewSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -5635,6 +5873,7 @@ struct SLANG_EXPORT ClockingDirectionSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -5656,6 +5895,7 @@ struct SLANG_EXPORT DefaultSkewItemSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -5680,6 +5920,7 @@ struct SLANG_EXPORT ClockingItemSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -5711,6 +5952,7 @@ struct SLANG_EXPORT ClockingDeclarationSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -5732,6 +5974,7 @@ struct SLANG_EXPORT DefaultClockingReferenceSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -5755,6 +5998,7 @@ struct SLANG_EXPORT DefaultDisableDeclarationSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -5780,6 +6024,7 @@ struct SLANG_EXPORT DPIImportSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -5804,6 +6049,7 @@ struct SLANG_EXPORT DPIExportSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -5825,6 +6071,7 @@ struct SLANG_EXPORT ElabSystemTaskSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -5846,6 +6093,7 @@ struct SLANG_EXPORT UdpPortDeclSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -5868,6 +6116,7 @@ struct SLANG_EXPORT UdpOutputPortDeclSyntax : public UdpPortDeclSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -5890,6 +6139,7 @@ struct SLANG_EXPORT UdpInputPortDeclSyntax : public UdpPortDeclSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -5925,6 +6175,7 @@ struct SLANG_EXPORT AnsiUdpPortListSyntax : public UdpPortListSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -5949,6 +6200,7 @@ struct SLANG_EXPORT NonAnsiUdpPortListSyntax : public UdpPortListSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -5971,6 +6223,7 @@ struct SLANG_EXPORT WildcardUdpPortListSyntax : public UdpPortListSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -5994,6 +6247,7 @@ struct SLANG_EXPORT UdpInitialStmtSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -6026,6 +6280,7 @@ struct SLANG_EXPORT UdpEdgeFieldSyntax : public UdpFieldBaseSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -6044,6 +6299,7 @@ struct SLANG_EXPORT UdpSimpleFieldSyntax : public UdpFieldBaseSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -6072,6 +6328,7 @@ struct SLANG_EXPORT UdpEntrySyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -6101,6 +6358,7 @@ struct SLANG_EXPORT UdpBodySyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -6127,6 +6385,7 @@ struct SLANG_EXPORT UdpDeclarationSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -6153,6 +6412,7 @@ struct SLANG_EXPORT SpecparamDeclaratorSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -6178,6 +6438,7 @@ struct SLANG_EXPORT SpecparamDeclarationSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -6210,6 +6471,7 @@ struct SLANG_EXPORT SimplePathSuffixSyntax : public PathSuffixSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -6237,6 +6499,7 @@ struct SLANG_EXPORT EdgeSensitivePathSuffixSyntax : public PathSuffixSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -6265,6 +6528,7 @@ struct SLANG_EXPORT PathDescriptionSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -6292,6 +6556,7 @@ struct SLANG_EXPORT PathDeclarationSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -6316,6 +6581,7 @@ struct SLANG_EXPORT ConditionalPathDeclarationSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -6336,6 +6602,7 @@ struct SLANG_EXPORT IfNonePathDeclarationSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -6359,6 +6626,7 @@ struct SLANG_EXPORT PulseStyleDeclarationSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -6388,6 +6656,7 @@ struct SLANG_EXPORT EmptyTimingCheckArgSyntax : public TimingCheckArgSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -6407,6 +6676,7 @@ struct SLANG_EXPORT EdgeDescriptorSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -6430,6 +6700,7 @@ struct SLANG_EXPORT EdgeControlSpecifierSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -6450,6 +6721,7 @@ struct SLANG_EXPORT TimingCheckEventConditionSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -6474,6 +6746,7 @@ struct SLANG_EXPORT TimingCheckEventArgSyntax : public TimingCheckArgSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -6493,6 +6766,7 @@ struct SLANG_EXPORT ExpressionTimingCheckArgSyntax : public TimingCheckArgSyntax
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -6518,6 +6792,7 @@ struct SLANG_EXPORT SystemTimingCheckSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -6541,6 +6816,7 @@ struct SLANG_EXPORT SpecifyBlockSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -6564,6 +6840,7 @@ struct SLANG_EXPORT NetAliasSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -6588,6 +6865,7 @@ struct SLANG_EXPORT ExternModuleDeclSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -6614,6 +6892,7 @@ struct SLANG_EXPORT ExternUdpDeclSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -6636,6 +6915,7 @@ struct SLANG_EXPORT ExternInterfaceMethodSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -6668,6 +6948,7 @@ struct SLANG_EXPORT DistWeightSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -6700,6 +6981,7 @@ struct SLANG_EXPORT DistItemSyntax : public DistItemBaseSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -6720,6 +7002,7 @@ struct SLANG_EXPORT DefaultDistItemSyntax : public DistItemBaseSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -6744,6 +7027,7 @@ struct SLANG_EXPORT DistConstraintListSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -6765,6 +7049,7 @@ struct SLANG_EXPORT ExpressionOrDistSyntax : public ExpressionSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -6786,6 +7071,7 @@ struct SLANG_EXPORT ExpressionConstraintSyntax : public ConstraintItemSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -6807,6 +7093,7 @@ struct SLANG_EXPORT UniquenessConstraintSyntax : public ConstraintItemSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -6829,6 +7116,7 @@ struct SLANG_EXPORT ImplicationConstraintSyntax : public ConstraintItemSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -6849,6 +7137,7 @@ struct SLANG_EXPORT ElseConstraintClauseSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -6875,6 +7164,7 @@ struct SLANG_EXPORT ConditionalConstraintSyntax : public ConstraintItemSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -6897,6 +7187,7 @@ struct SLANG_EXPORT LoopConstraintSyntax : public ConstraintItemSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -6919,6 +7210,7 @@ struct SLANG_EXPORT DisableConstraintSyntax : public ConstraintItemSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -6947,6 +7239,7 @@ struct SLANG_EXPORT SolveBeforeConstraintSyntax : public ConstraintItemSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -6970,6 +7263,7 @@ struct SLANG_EXPORT ConstraintBlockSyntax : public ConstraintItemSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -6997,6 +7291,7 @@ struct SLANG_EXPORT ConstraintPrototypeSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -7025,6 +7320,7 @@ struct SLANG_EXPORT ConstraintDeclarationSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -7048,6 +7344,7 @@ struct SLANG_EXPORT ParenExpressionListSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -7072,6 +7369,7 @@ struct SLANG_EXPORT ArrayOrRandomizeMethodExpressionSyntax : public ExpressionSy
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -7094,6 +7392,7 @@ struct SLANG_EXPORT WithFunctionSampleSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -7127,6 +7426,7 @@ struct SLANG_EXPORT BinaryBlockEventExpressionSyntax : public BlockEventExpressi
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -7147,6 +7447,7 @@ struct SLANG_EXPORT PrimaryBlockEventExpressionSyntax : public BlockEventExpress
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -7169,6 +7470,7 @@ struct SLANG_EXPORT BlockCoverageEventSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -7201,6 +7503,7 @@ struct SLANG_EXPORT CovergroupDeclarationSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -7221,6 +7524,7 @@ struct SLANG_EXPORT CoverageOptionSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -7243,6 +7547,7 @@ struct SLANG_EXPORT CoverageIffClauseSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -7276,6 +7581,7 @@ struct SLANG_EXPORT CoverpointSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -7306,6 +7612,7 @@ struct SLANG_EXPORT DefaultCoverageBinInitializerSyntax : public CoverageBinInit
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -7328,6 +7635,7 @@ struct SLANG_EXPORT WithClauseSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -7347,6 +7655,7 @@ struct SLANG_EXPORT ExpressionCoverageBinInitializerSyntax : public CoverageBinI
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -7368,6 +7677,7 @@ struct SLANG_EXPORT RangeCoverageBinInitializerSyntax : public CoverageBinInitia
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -7388,6 +7698,7 @@ struct SLANG_EXPORT IdWithExprCoverageBinInitializerSyntax : public CoverageBinI
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -7410,6 +7721,7 @@ struct SLANG_EXPORT TransRepeatRangeSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -7433,6 +7745,7 @@ struct SLANG_EXPORT TransRangeSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -7456,6 +7769,7 @@ struct SLANG_EXPORT TransSetSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -7477,6 +7791,7 @@ struct SLANG_EXPORT TransListCoverageBinInitializerSyntax : public CoverageBinIn
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -7498,6 +7813,7 @@ struct SLANG_EXPORT CoverageBinsArraySizeSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -7526,6 +7842,7 @@ struct SLANG_EXPORT CoverageBinsSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -7559,6 +7876,7 @@ struct SLANG_EXPORT CoverCrossSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -7590,6 +7908,7 @@ struct SLANG_EXPORT IntersectClauseSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -7614,6 +7933,7 @@ struct SLANG_EXPORT BinsSelectConditionExprSyntax : public BinsSelectExpressionS
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -7634,6 +7954,7 @@ struct SLANG_EXPORT UnaryBinsSelectExprSyntax : public BinsSelectExpressionSynta
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -7656,6 +7977,7 @@ struct SLANG_EXPORT BinaryBinsSelectExprSyntax : public BinsSelectExpressionSynt
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -7677,6 +7999,7 @@ struct SLANG_EXPORT ParenthesizedBinsSelectExprSyntax : public BinsSelectExpress
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -7698,6 +8021,7 @@ struct SLANG_EXPORT SimpleBinsSelectExprSyntax : public BinsSelectExpressionSynt
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -7724,6 +8048,7 @@ struct SLANG_EXPORT BinSelectWithFilterExprSyntax : public BinsSelectExpressionS
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -7749,6 +8074,7 @@ struct SLANG_EXPORT BinsSelectionSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -7771,6 +8097,7 @@ struct SLANG_EXPORT SequenceRepetitionSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -7792,6 +8119,7 @@ struct SLANG_EXPORT SimpleSequenceExprSyntax : public SequenceExprSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -7814,6 +8142,7 @@ struct SLANG_EXPORT SequenceMatchListSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -7839,6 +8168,7 @@ struct SLANG_EXPORT ParenthesizedSequenceExprSyntax : public SequenceExprSyntax 
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -7861,6 +8191,7 @@ struct SLANG_EXPORT BinarySequenceExprSyntax : public SequenceExprSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -7885,6 +8216,7 @@ struct SLANG_EXPORT FirstMatchSequenceExprSyntax : public SequenceExprSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -7906,6 +8238,7 @@ struct SLANG_EXPORT ClockingSequenceExprSyntax : public SequenceExprSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -7933,6 +8266,7 @@ struct SLANG_EXPORT DelayedSequenceElementSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -7956,6 +8290,7 @@ struct SLANG_EXPORT DelayedSequenceExprSyntax : public SequenceExprSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -7975,6 +8310,7 @@ struct SLANG_EXPORT SimplePropertyExprSyntax : public PropertyExprSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -7998,6 +8334,7 @@ struct SLANG_EXPORT ParenthesizedPropertyExprSyntax : public PropertyExprSyntax 
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -8020,6 +8357,7 @@ struct SLANG_EXPORT StrongWeakPropertyExprSyntax : public PropertyExprSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -8040,6 +8378,7 @@ struct SLANG_EXPORT UnaryPropertyExprSyntax : public PropertyExprSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -8064,6 +8403,7 @@ struct SLANG_EXPORT UnarySelectPropertyExprSyntax : public PropertyExprSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -8086,6 +8426,7 @@ struct SLANG_EXPORT BinaryPropertyExprSyntax : public PropertyExprSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -8107,6 +8448,7 @@ struct SLANG_EXPORT ClockingPropertyExprSyntax : public PropertyExprSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -8131,6 +8473,7 @@ struct SLANG_EXPORT AcceptOnPropertyExprSyntax : public PropertyExprSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -8151,6 +8494,7 @@ struct SLANG_EXPORT ElsePropertyClauseSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -8177,6 +8521,7 @@ struct SLANG_EXPORT ConditionalPropertyExprSyntax : public PropertyExprSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -8210,6 +8555,7 @@ struct SLANG_EXPORT DefaultPropertyCaseItemSyntax : public PropertyCaseItemSynta
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -8235,6 +8581,7 @@ struct SLANG_EXPORT StandardPropertyCaseItemSyntax : public PropertyCaseItemSynt
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -8262,6 +8609,7 @@ struct SLANG_EXPORT CasePropertyExprSyntax : public PropertyExprSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -8287,6 +8635,7 @@ struct SLANG_EXPORT LocalVariableDeclarationSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -8319,6 +8668,7 @@ struct SLANG_EXPORT PropertyDeclarationSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -8351,6 +8701,7 @@ struct SLANG_EXPORT SequenceDeclarationSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -8380,6 +8731,7 @@ struct SLANG_EXPORT CheckerDeclarationSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -8400,6 +8752,7 @@ struct SLANG_EXPORT CheckerDataDeclarationSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -8422,6 +8775,7 @@ struct SLANG_EXPORT CompilationUnitSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -8444,6 +8798,7 @@ struct SLANG_EXPORT LibraryMapSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -8462,6 +8817,7 @@ struct SLANG_EXPORT DirectiveSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -8479,6 +8835,7 @@ struct SLANG_EXPORT SimpleDirectiveSyntax : public DirectiveSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -8497,6 +8854,7 @@ struct SLANG_EXPORT IncludeDirectiveSyntax : public DirectiveSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -8526,6 +8884,7 @@ struct SLANG_EXPORT NamedConditionalDirectiveExpressionSyntax : public Condition
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -8546,6 +8905,7 @@ struct SLANG_EXPORT UnaryConditionalDirectiveExpressionSyntax : public Condition
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -8568,6 +8928,7 @@ struct SLANG_EXPORT BinaryConditionalDirectiveExpressionSyntax : public Conditio
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -8589,6 +8950,7 @@ struct SLANG_EXPORT ParenthesizedConditionalDirectiveExpressionSyntax : public C
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -8610,6 +8972,7 @@ struct SLANG_EXPORT ConditionalBranchDirectiveSyntax : public DirectiveSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -8629,6 +8992,7 @@ struct SLANG_EXPORT UnconditionalBranchDirectiveSyntax : public DirectiveSyntax 
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -8649,6 +9013,7 @@ struct SLANG_EXPORT MacroArgumentDefaultSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -8669,6 +9034,7 @@ struct SLANG_EXPORT MacroFormalArgumentSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -8692,6 +9058,7 @@ struct SLANG_EXPORT MacroFormalArgumentListSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -8714,6 +9081,7 @@ struct SLANG_EXPORT DefineDirectiveSyntax : public DirectiveSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -8733,6 +9101,7 @@ struct SLANG_EXPORT MacroActualArgumentSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -8756,6 +9125,7 @@ struct SLANG_EXPORT MacroActualArgumentListSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -8775,6 +9145,7 @@ struct SLANG_EXPORT MacroUsageSyntax : public DirectiveSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -8795,6 +9166,7 @@ struct SLANG_EXPORT TimeScaleDirectiveSyntax : public DirectiveSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -8813,6 +9185,7 @@ struct SLANG_EXPORT DefaultNetTypeDirectiveSyntax : public DirectiveSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -8831,6 +9204,7 @@ struct SLANG_EXPORT UnconnectedDriveDirectiveSyntax : public DirectiveSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -8849,6 +9223,7 @@ struct SLANG_EXPORT DefaultDecayTimeDirectiveSyntax : public DirectiveSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -8867,6 +9242,7 @@ struct SLANG_EXPORT DefaultTriregStrengthDirectiveSyntax : public DirectiveSynta
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -8887,6 +9263,7 @@ struct SLANG_EXPORT LineDirectiveSyntax : public DirectiveSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -8905,6 +9282,7 @@ struct SLANG_EXPORT UndefDirectiveSyntax : public DirectiveSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -8923,6 +9301,7 @@ struct SLANG_EXPORT BeginKeywordsDirectiveSyntax : public DirectiveSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -8952,6 +9331,7 @@ struct SLANG_EXPORT SimplePragmaExpressionSyntax : public PragmaExpressionSyntax
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -8973,6 +9353,7 @@ struct SLANG_EXPORT NameValuePragmaExpressionSyntax : public PragmaExpressionSyn
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -8993,6 +9374,7 @@ struct SLANG_EXPORT NumberPragmaExpressionSyntax : public PragmaExpressionSyntax
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -9016,6 +9398,7 @@ struct SLANG_EXPORT ParenPragmaExpressionSyntax : public PragmaExpressionSyntax 
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -9038,6 +9421,7 @@ struct SLANG_EXPORT PragmaDirectiveSyntax : public DirectiveSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -9058,6 +9442,7 @@ struct SLANG_EXPORT ConfigCellIdentifierSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -9089,6 +9474,7 @@ struct SLANG_EXPORT ConfigLiblistSyntax : public ConfigRuleClauseSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -9113,6 +9499,7 @@ struct SLANG_EXPORT ConfigUseClauseSyntax : public ConfigRuleClauseSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -9145,6 +9532,7 @@ struct SLANG_EXPORT DefaultConfigRuleSyntax : public ConfigRuleSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -9164,6 +9552,7 @@ struct SLANG_EXPORT ConfigInstanceIdentifierSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -9190,6 +9579,7 @@ struct SLANG_EXPORT InstanceConfigRuleSyntax : public ConfigRuleSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -9213,6 +9603,7 @@ struct SLANG_EXPORT CellConfigRuleSyntax : public ConfigRuleSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -9250,6 +9641,7 @@ struct SLANG_EXPORT ConfigDeclarationSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -9268,6 +9660,7 @@ struct SLANG_EXPORT FilePathSpecSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -9291,6 +9684,7 @@ struct SLANG_EXPORT LibraryIncDirClauseSyntax : public SyntaxNode {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -9317,6 +9711,7 @@ struct SLANG_EXPORT LibraryDeclarationSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -9338,6 +9733,7 @@ struct SLANG_EXPORT LibraryIncludeStatementSyntax : public MemberSyntax {
 
     static bool isKind(SyntaxKind kind);
 
+    static bool isChildOptional(size_t index);
     TokenOrSyntax getChild(size_t index);
     ConstTokenOrSyntax getChild(size_t index) const;
     PtrTokenOrSyntax getChildPtr(size_t index);
@@ -9750,6 +10146,7 @@ namespace detail {
 
 struct InvalidSyntaxNode : public SyntaxNode {
     static bool isKind(SyntaxKind kind) { return kind == SyntaxKind::Unknown; }
+    static bool isChildOptional(size_t) { return true; }
     TokenOrSyntax getChild(size_t) { return nullptr; }
     ConstTokenOrSyntax getChild(size_t) const { return nullptr; }
     PtrTokenOrSyntax getChildPtr(size_t) { return nullptr; }

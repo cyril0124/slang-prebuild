@@ -9,15 +9,18 @@
 
 #include "slang/ast/Constraints.h"
 #include "slang/ast/Patterns.h"
-#include "slang/ast/Statements.h"
 #include "slang/ast/TimingControl.h"
 #include "slang/ast/expressions/AssertionExpr.h"
 #include "slang/ast/expressions/AssignmentExpressions.h"
 #include "slang/ast/expressions/CallExpression.h"
+#include "slang/ast/expressions/ConversionExpression.h"
 #include "slang/ast/expressions/LiteralExpressions.h"
 #include "slang/ast/expressions/MiscExpressions.h"
 #include "slang/ast/expressions/OperatorExpressions.h"
 #include "slang/ast/expressions/SelectExpressions.h"
+#include "slang/ast/statements/ConditionalStatements.h"
+#include "slang/ast/statements/LoopStatements.h"
+#include "slang/ast/statements/MiscStatements.h"
 #include "slang/ast/symbols/AttributeSymbol.h"
 #include "slang/ast/symbols/BlockSymbols.h"
 #include "slang/ast/symbols/ClassSymbols.h"
@@ -89,6 +92,11 @@ public:
                 if (auto init = declaredType->getInitializer())
                     init->visit(DERIVED);
             }
+        }
+
+        if constexpr (std::is_base_of_v<GenericClassDefSymbol, T>) {
+            for (auto&& spec : t.specializations())
+                spec.visit(DERIVED);
         }
 
         if constexpr (std::is_base_of_v<Scope, T>) {
@@ -403,6 +411,11 @@ void CheckerInstanceSymbol::visitExprs(TVisitor&& visitor) const {
         if (auto expr = conn.getOutputInitialExpr())
             expr->visit(visitor);
     }
+}
+
+template<typename TVisitor>
+decltype(auto) SubroutineSymbol::visitStmts(TVisitor&& visitor) const {
+    return getBody().visit(visitor);
 }
 
 template<typename TVisitor, typename... Args>

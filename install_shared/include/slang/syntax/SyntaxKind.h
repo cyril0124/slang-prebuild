@@ -7,6 +7,9 @@
 //------------------------------------------------------------------------------
 #pragma once
 
+#include <ostream>
+#include "slang/slang_export.h"
+
 namespace std { class type_info; }
 
 namespace slang::syntax {

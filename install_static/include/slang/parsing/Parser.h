@@ -54,9 +54,12 @@ enum class ExpressionOptions {
     BinsSelectContext = 1 << 6,
 
     /// "dist" expressions are allowed in this context.
-    AllowDist = 1 << 7
+    AllowDist = 1 << 7,
+
+    /// Attribute instances are disallowed in expression context.
+    DisallowAttrs = 1 << 8
 };
-SLANG_BITMASK(ExpressionOptions, AllowDist)
+SLANG_BITMASK(ExpressionOptions, DisallowAttrs)
 
 /// Various options for parsing names.
 enum class NameOptions {
@@ -467,6 +470,10 @@ private:
 
     // The factory used to create new syntax nodes.
     syntax::SyntaxFactory factory;
+
+    // A pending node that should be stored as a "preview node"
+    // on the next member that is parsed.
+    const syntax::SyntaxNode* previewNode = nullptr;
 
     // Stored parse options.
     ParserOptions parseOptions;
