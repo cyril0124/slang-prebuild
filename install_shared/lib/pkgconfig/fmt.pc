@@ -1,5 +1,5 @@
-prefix=/nfs/home/zhengchuyu/tmp/test_slang_line/slang-prebuild/install_shared
-exec_prefix=/nfs/home/zhengchuyu/tmp/test_slang_line/slang-prebuild/install_shared
+prefix=/nfs/home/zhengchuyu/tmp/verilua/extern/slang-prebuild/install_shared
+exec_prefix=/nfs/home/zhengchuyu/tmp/verilua/extern/slang-prebuild/install_shared
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include
 

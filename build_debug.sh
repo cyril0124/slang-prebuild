@@ -1,12 +1,14 @@
 #!/bin/bash
 
+set -e
+
 prj_dir=$(pwd)
 slang_dir=$prj_dir/slang
 build_dir=$slang_dir/build
 install_dir=$prj_dir/install
 
 git submodule update --init --recursive
-cd $slang_dir; git checkout 4dee9aabdb2fbf01646acb1dd09cbb1fa18e1e62
+cd $slang_dir; git checkout 976e83b96da150130c3acec1d7b03997a2b7cd87
 cd $prj_dir
 
 # ==================================================
